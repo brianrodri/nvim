@@ -49,9 +49,9 @@ return {
   },
 
   {
-    "brianrodri/projects.nvim",
-    ---@module "projects"
-    ---@type v1.ProjectOptions
+    "ahmedkhalf/project.nvim",
+    ---@module "project_nvim"
+    ---@type ProjectOptions
     opts = { patterns = { ".obsidian" } },
     opts_extend = { "patterns" },
   },

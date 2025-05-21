@@ -35,7 +35,7 @@
   "obsidian.nvim": { "branch": "substitution-context", "commit": "bd9ec2e6c79805bbb40eddeb562558e637d131ba" },
   "parrot.nvim": { "branch": "main", "commit": "758c3acad75469434700b28ee756d6515fdf7c1a" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
-  "projects.nvim": { "branch": "main", "commit": "5339576e8eb43e56a4f426acdec22a0ec35c0561" },
+  "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "render-markdown.nvim": { "branch": "main", "commit": "ac3639d88743d6364d40a4033f2813e56168820d" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "telescope-emoji.nvim": { "branch": "master", "commit": "86248d97be84a1ce83f0541500ef9edc99ea2aa1" },
