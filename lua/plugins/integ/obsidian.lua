@@ -17,7 +17,7 @@ end
 ---@type LazySpec
 return {
   {
-    "brianrodri/obsidian.nvim",
+    "brianrodri/obsidian.nvim", -- TODO(obsidian-nvim/obsidian.nvim#137): Stop using my fork.
     branch = "substitution-context",
     dependencies = { "nvim-lua/plenary.nvim" },
     ---@module "obsidian"
