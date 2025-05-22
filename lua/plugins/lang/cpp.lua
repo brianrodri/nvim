@@ -9,7 +9,7 @@ return {
 
   {
     "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { cpp = { "clang-format" } } },
+    opts = { formatters_by_ft = { cpp = { "clang-format" }, c = { "clang-format" } } },
   },
 
   {
@@ -21,6 +21,6 @@ return {
   {
     "mfussenegger/nvim-lint",
     ---@type my.LintOpts
-    opts = { linters_by_ft = { cpp = { "cpplint" } } },
+    opts = { linters_by_ft = { cpp = { "cpplint" }, c = { "cpplint" } } },
   },
 }
