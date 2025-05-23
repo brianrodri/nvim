@@ -1,5 +1,3 @@
-local Path = require("my.utils.path")
-
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -86,7 +84,7 @@ return {
               key = "c",
               desc = "Find Config",
               action = function()
-                require("telescope.builtin").find_files({ cwd = Path.stdpath("config").path, follow = true })
+                require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config"), follow = true })
               end,
             },
             { icon = " ", key = "g", desc = "Lazygit", action = ":lua Snacks.lazygit()" },

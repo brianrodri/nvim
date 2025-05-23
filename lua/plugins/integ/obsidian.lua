@@ -31,10 +31,10 @@ return {
     -- stylua: ignore
     -- luacheck: no max line length
     keys = {
-      { "<leader>na", function() append_prompt_to_note(Vaults.inbox_note.path) end, desc = "Append To Inbox" },
-      { "<leader>no", function() require("obsidian").get_client():open_note(Vaults.inbox_note.path) end, desc = "Open Inbox" },
-      { "<leader>n/", function() require("obsidian").get_client():command("search", { args = "" }) end, desc = "Grep Notes" },
-      { "<leader>ns", function() require("obsidian").get_client():command("quick_switch", { args = "" }) end, desc = "Search Notes" },
+      { "<leader>na", function() append_prompt_to_note(Vaults.inbox_note) end, desc = "Append To Inbox" },
+      { "<leader>no", function() require("obsidian").get_client():open_note(Vaults.inbox_note) end, desc = "Open Inbox" },
+      { "<leader>n/", function() require("telescope.builtin").live_grep({ cwd = Vaults.personal.path, follow = true }) end, desc = "Grep Notes" },
+      { "<leader>ns", function() require("telescope.builtin").find_files({ cwd = Vaults.personal.path, follow = true }) end, desc = "Search Notes" },
       { "<leader>nn", function() require("obsidian").get_client():command("new", { args = "" }) end, desc = "New Note" },
       { "<leader>nt", function() require("obsidian").get_client():command("today", { args = "" }) end, desc = "Open Today's Note" },
     },

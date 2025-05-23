@@ -1,4 +1,4 @@
-local Funcs = require("my.utils.funcs")
+local Utils = require("my.utils")
 
 ---@type string[]
 --- File types that can be closed by pressing "q" in normal mode.
@@ -44,8 +44,8 @@ vim.api.nvim_create_autocmd("User", {
   desc = "Setup complex keymaps",
   callback = function()
     local toggle = require("snacks.toggle")
-    Funcs.var_toggle({ desc = "Auto Format", var_name = "autoformat", global = false }):map("<leader>oq")
-    Funcs.var_toggle({ desc = "Auto Format", var_name = "autoformat", global = true }):map("<leader>oQ")
+    Utils.var_toggle({ desc = "Auto Format", var_name = "autoformat", global = false }):map("<leader>oq")
+    Utils.var_toggle({ desc = "Auto Format", var_name = "autoformat", global = true }):map("<leader>oQ")
     toggle.option("colorcolumn", { name = "Color Column", on = "+1", off = "" }):map("<leader>oc")
     toggle.diagnostics():map("<leader>od")
     toggle.inlay_hints():map("<leader>oh")
