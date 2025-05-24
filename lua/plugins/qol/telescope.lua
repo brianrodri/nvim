@@ -1,4 +1,5 @@
-local Path = require("my.utils.path")
+local config_dir = vim.fn.stdpath("config")
+local plugin_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
 
 ---@module "lazy"
 ---@type LazySpec
@@ -15,11 +16,11 @@ return {
     { "<leader>s/", function() require("telescope.builtin").live_grep() end, desc = "Grep Lines" },
     { "<leader>s:", function() require("telescope.builtin").commands() end, desc = "Find Commands" },
     { "<leader>sb", function() require("telescope.builtin").buffers() end, desc = "Find Buffers" },
-    { "<leader>sc", function() require("telescope.builtin").find_files({ cwd = Path.stdpath("config").path, follow = true }) end, desc = "Find Config Files" },
+    { "<leader>sc", function() require("telescope.builtin").find_files({ cwd = config_dir, follow = true }) end, desc = "Find Config Files" },
     { "<leader>sf", function() require("telescope.builtin").find_files({ follow = true }) end, desc = "Find Files" },
     { "<leader>sh", function() require("telescope.builtin").highlights() end, desc = "Find Highlights" },
     { "<leader>sk", function() require("telescope.builtin").keymaps() end, desc = "Find Keymaps" },
-    { "<leader>sl", function() require("telescope.builtin").find_files({ cwd = Path.stdpath("data"):join("lazy").path, follow = true }) end, desc = "Find Lazy Files" },
+    { "<leader>sl", function() require("telescope.builtin").find_files({ cwd = plugin_dir, follow = true }) end, desc = "Find Plugin Files" },
     { "<leader>sr", function() require("telescope.builtin").oldfiles() end, desc = "Find Recent Files" },
     { "<leader>ss", function() require("telescope.builtin").builtin() end, desc = "Find Telescope Builtins" },
     { "<leader>sz", function() require("telescope.builtin").spell_suggest() end, desc = "Find Spelling Suggestions" },
