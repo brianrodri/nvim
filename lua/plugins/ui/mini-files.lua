@@ -1,3 +1,6 @@
+--- Within a mini.files buffer: opens the item under the current cursor in a new split.
+---
+---@param direction "belowright vertical"|"belowright horizontal"|"aboveleft horizontal"|"aboveleft vertical"
 local function open_in_split(direction)
   local MiniFiles = require("mini.files")
   local cur_target = MiniFiles.get_explorer_state().target_window
@@ -23,16 +26,16 @@ return {
       width_preview = 64,
     },
     mappings = {
-      close = "-",
+      close = "q",
       go_in = "",
       go_in_plus = "L",
       go_out = "",
       go_out_plus = "H",
-      reset = "<c-c>",
+      reset = "<esc>",
       reveal_cwd = "g.",
       synchronize = "=",
-      trim_left = "<c-h>",
-      trim_right = "<c-l>",
+      trim_left = "<m-h>",
+      trim_right = "<m-l>",
     },
   },
   keys = {
@@ -48,9 +51,6 @@ return {
         buf_keymap("<C-j>", function() open_in_split("belowright horizontal") end, "Open to bottom")
         buf_keymap("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open to top")
         buf_keymap("<C-h>", function() open_in_split("aboveleft vertical") end, "Open to left")
-        buf_keymap("<cr>", function() require("mini.files").go_in({ close_on_file = true }) end, "Go in entry plus")
-        buf_keymap("q", function() require("mini.files").close() end, "Close")
-        buf_keymap("<esc>", function() require("mini.files").close() end, "Close")
       end,
     })
 
