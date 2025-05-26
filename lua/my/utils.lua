@@ -1,5 +1,8 @@
 local Utils = {}
 
+--- Returns path containing the calling-script.
+function Utils.get_script_path() return vim.fs.abspath(debug.getinfo(2).short_src) end
+
 ---@overload fun(var: string, global?: boolean): state: boolean
 function Utils.get_var(var, global)
   if vim.b[var] ~= nil and not global then

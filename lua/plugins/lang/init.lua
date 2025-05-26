@@ -1,13 +1,6 @@
-local MODULE_NAMES = {
-  "godot",
-  "json",
-  "lua",
-  "markdown",
-  "rust",
-  "toml",
-  "typescript",
-  "vimdoc",
-  "yaml",
-}
+local Utils = require("my.utils")
 
-return vim.iter(MODULE_NAMES):map(function(name) require("plugins.lang." .. name) end):totable()
+return vim
+  .iter(vim.fs.dir(vim.fs.dirname(Utils.get_script_path())))
+  :map(function(name, type) return type == "directory" and { import = "plugins.lang." .. name } or nil end)
+  :totable()
