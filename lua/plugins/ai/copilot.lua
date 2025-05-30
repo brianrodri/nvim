@@ -1,3 +1,5 @@
+local Vaults = require("my.vaults")
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -11,6 +13,7 @@ return {
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
+      workspace_folders = { tostring(Vaults.personal.path) },
     },
     ---@diagnostic enable: missing-fields
   },
