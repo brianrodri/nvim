@@ -19,7 +19,7 @@ return {
       sources = {
         default = { "nerdfont" },
         providers = {
-          nerdfont = { module = "blink-nerdfont", name = "Nerd Fonts", score_offset = 14 },
+          nerdfont = { module = "blink-nerdfont", name = "Nerd Fonts", score_offset = -1000 },
         },
       },
     },

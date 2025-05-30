@@ -19,7 +19,7 @@ return {
       sources = {
         default = { "emoji" },
         providers = {
-          emoji = { module = "blink-emoji", name = "Emoji", score_offset = 20 },
+          emoji = { module = "blink-emoji", name = "Emoji", score_offset = -1000 },
         },
       },
     },
