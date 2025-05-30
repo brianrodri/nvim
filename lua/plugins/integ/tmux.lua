@@ -10,6 +10,8 @@ return {
   {
     "saghen/blink.cmp",
     dependencies = { "mgalliou/blink-cmp-tmux" },
+    ---@module "blink-cmp"
+    ---@type blink.cmp.Config
     opts = {
       sources = {
         default = { "tmux" },

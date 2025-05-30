@@ -1,12 +1,18 @@
+---@module "lazy"
+---@type LazySpec
 return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    ---@module "copilot"
+    ---@type CopilotConfig
+    ---@diagnostic disable: missing-fields
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
     },
+    ---@diagnostic enable: missing-fields
   },
 
   {
