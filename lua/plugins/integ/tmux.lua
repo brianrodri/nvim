@@ -17,7 +17,7 @@ return {
           tmux = {
             module = "blink-cmp-tmux",
             name = "tmux",
-            opts = { all_panes = true, capture_history = true },
+            opts = { all_panes = true, capture_history = true, triggered_only = false },
           },
         },
       },
