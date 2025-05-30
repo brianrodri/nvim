@@ -78,7 +78,12 @@ return {
             { icon = "󰝒 ", key = "n", desc = "New", action = ":ene | startinsert" },
             { icon = "󱎸 ", key = "/", desc = "Find Pattern", action = ":Telescope live_grep" },
             { icon = "󰱼 ", key = "f", desc = "Find File", action = ":Telescope find_files" },
-            { icon = "󱋡 ", key = "r", desc = "Find Recent", action = ":Telescope oldfiles" },
+            {
+              icon = "󱋡 ",
+              key = "r",
+              desc = "Find Recent",
+              action = ":Telescope oldfiles cwd_only=true follow=true",
+            },
             {
               icon = "󱁻 ",
               key = "c",
