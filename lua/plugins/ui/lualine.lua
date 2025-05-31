@@ -1,3 +1,5 @@
+local my_prefs = require("my.prefs")
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -15,7 +17,7 @@ return {
       lualine_c = { "filename" },
       lualine_x = { "filetype" },
       lualine_y = { "location" },
-      lualine_z = { "lsp_status" },
+      lualine_z = { { "lsp_status", ignore_lsp = my_prefs.hidden_lsp_status_list } },
     },
   },
   opts_extend = {
