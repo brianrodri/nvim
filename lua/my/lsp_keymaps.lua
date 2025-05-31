@@ -1,3 +1,4 @@
+---@module "which-key"
 ---@type wk.Spec
 return {
   { "<leader>cr", function() vim.lsp.buf.rename() end, desc = "Rename Symbol" },
