@@ -1,3 +1,8 @@
+local noice_status_lualine_section = {
+  function() return require("noice").api.status.search.get() end,
+  cond = function() return require("noice").api.status.search.has() end,
+}
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -31,5 +36,11 @@ return {
         opts_extend = { "ensure_installed" },
       },
     },
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = { sections = { lualine_c = { noice_status_lualine_section } } },
+    opts_extend = { "sections.lualine_c" },
   },
 }

@@ -1,3 +1,11 @@
+local gitsigns_status_lualine_section = {
+  "diff",
+  source = function()
+    local gitsigns = vim.b.gitsigns_status_dict
+    return gitsigns and { added = gitsigns.added, modified = gitsigns.changed, removed = gitsigns.removed }
+  end,
+}
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -62,5 +70,11 @@ return {
     ---@type ProjectOptions
     opts = { patterns = { ".git" } },
     opts_extend = { "patterns" },
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = { sections = { lualine_c = { "b:gitsigns_head", gitsigns_status_lualine_section } } },
+    opts_extend = { "sections.lualine_c" },
   },
 }

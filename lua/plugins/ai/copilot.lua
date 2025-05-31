@@ -36,4 +36,11 @@ return {
     },
     opts_extend = { "sources.default" },
   },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "AndreM222/copilot-lualine" },
+    opts = { sections = { lualine_x = { "copilot" } } },
+    opts_extend = { "sections.lualine_x" },
+  },
 }

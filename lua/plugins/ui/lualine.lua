@@ -1,8 +1,3 @@
-local function get_gitsigns_diff()
-  local gitsigns = vim.b.gitsigns_status_dict
-  return gitsigns and { added = gitsigns.added, modified = gitsigns.changed, removed = gitsigns.removed }
-end
-
 local function parrot_status()
   local status_info = require("parrot.config").get_status_info()
   local status
@@ -23,25 +18,23 @@ return {
     "lewis6991/gitsigns.nvim",
     "folke/noice.nvim",
   },
-  opts = function()
-    return {
-      theme = "everforest",
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "b:gitsigns_head", { "diff", source = get_gitsigns_diff }, "diagnostics" },
-        lualine_c = {
-          "filename",
-          {
-            ---@diagnostic disable-next-line: undefined-field  TODO: Lua doesn't recognize fields of NoiceStatus.
-            function() return require("noice").api.status.search.get() end,
-            ---@diagnostic disable-next-line: undefined-field
-            cond = function() return require("noice").api.status.search.has() end,
-          },
-        },
-        lualine_x = { parrot_status, "filetype" },
-        lualine_y = { "location" },
-        lualine_z = { "lsp_status" },
-      },
-    }
-  end,
+  opts = {
+    theme = "everforest",
+    sections = {
+      lualine_a = { "mode" },
+      lualine_b = { "diagnostics" },
+      lualine_c = { "filename" },
+      lualine_x = { parrot_status, "filetype" },
+      lualine_y = { "location" },
+      lualine_z = { "lsp_status" },
+    },
+  },
+  opts_extend = {
+    "sections.lualine_a",
+    "sections.lualine_b",
+    "sections.lualine_c",
+    "sections.lualine_x",
+    "sections.lualine_y",
+    "sections.lualine_z",
+  },
 }
