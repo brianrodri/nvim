@@ -1,4 +1,5 @@
 local Utils = require("my.utils")
+local my_lsp_keymaps = require("my.lsp_keymaps")
 
 ---@type string[]
 --- File types that can be closed by pressing "q" in normal mode.
@@ -78,20 +79,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-keymaps", { clear = true }),
   callback = function(args)
-    -- stylua: ignore
-    -- luacheck: no max line length
-    require("which-key").add({
-      { "<leader>cr", function() vim.lsp.buf.rename() end, buffer = args.buf, desc = "Rename Symbol" },
-      { "<leader>ca", function() vim.lsp.buf.code_action() end, buffer = args.buf, desc = "Code Action", mode = { "n", "x" } },
-      { "<leader>c*", function() require("trouble").toggle("lsp_references") end, buffer = args.buf, desc = "References" },
-      { "<leader>cd", function() require("trouble").toggle("lsp_declarations") end, buffer = args.buf, desc = "Declaration" },
-      { "<leader>cD", function() require("trouble").toggle("lsp_definitions") end, buffer = args.buf, desc = "Definitions" },
-      { "<leader>cy", function() require("trouble").toggle("lsp_implementations") end, buffer = args.buf, desc = "Implementations" },
-      { "<leader>cY", function() require("trouble").toggle("lsp_type_definitions") end, buffer = args.buf, desc = "Type Definitions" },
-      { "<leader>cs", function() require("trouble").toggle("my_lsp_document_symbols") end, buffer = args.buf, desc = "Document Symbols" },
-      { "<leader>cj", function() require("trouble").toggle("lsp_incoming_calls") end, buffer = args.buf, desc = "Incoming Calls" },
-      { "<leader>ck", function() require("trouble").toggle("lsp_outgoing_calls") end, buffer = args.buf, desc = "Outgoing Calls" },
-    }, { create = true })
+    require("which-key").add(
+      vim.tbl_map(function(spec) return vim.tbl_extend("keep", { buffer = args.buf }, spec) end, my_lsp_keymaps)
+    )
   end,
 })
 
