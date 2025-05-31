@@ -25,6 +25,8 @@ function Utils.flatten_submodule_plugins()
     :totable()
 end
 
+--- Returns a copy of items without any duplicates.
+---
 ---@generic T
 ---@param items T[]
 ---@return T[]
