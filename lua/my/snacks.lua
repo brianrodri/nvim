@@ -84,7 +84,7 @@ return {
     SnacksDashboardSpecial = "Green",
   },
 
-  setup_toggles = function()
+  setup_toggle_keymaps = function()
     local snacks_toggle = require("snacks.toggle")
     my_autoformat_snacks_toggle({ global = false }):map("<leader>oq")
     my_autoformat_snacks_toggle({ global = true }):map("<leader>oQ")

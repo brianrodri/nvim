@@ -34,7 +34,7 @@ return {
     },
     init = function()
       require("snacks.util").set_hl(my_snacks.dashboard_highlight_groups)
-      my_snacks.setup_toggles()
+      my_snacks.setup_toggle_keymaps()
     end,
   },
 }
