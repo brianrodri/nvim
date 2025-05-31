@@ -1,6 +1,2 @@
-local Utils = require("my.utils")
-
-return vim
-  .iter(vim.fs.dir(vim.fs.dirname(Utils.get_script_path())))
-  :map(function(name, type) return type == "directory" and { import = "plugins.lang." .. name } or nil end)
-  :totable()
+local flattened_plugins = require("my.utils").flatten_plugin_dir()
+return flattened_plugins

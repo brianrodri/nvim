@@ -1,7 +1,22 @@
 local Utils = {}
 
+local plugins_dir = vim.uv.fs_realpath(vim.fn.stdpath("config") .. "/lua/plugins")
+
 --- Returns path containing the calling-script.
-function Utils.get_script_path() return vim.fs.abspath(debug.getinfo(2).short_src) end
+function Utils.get_script_path() return vim.uv.fs_realpath(debug.getinfo(2).short_src) end
+
+function Utils.flatten_plugin_dir()
+  local call_site_path = assert(vim.uv.fs_realpath(debug.getinfo(2).short_src))
+  local parents = vim
+    .iter(vim.fs.parents(call_site_path))
+    :filter(function(p) return p:find(plugins_dir) == 1 end)
+    :totable()
+  local import_prefix = vim.iter(parents):map(vim.fs.basename):rev():join(".") .. "."
+  return vim
+    .iter(vim.fs.dir(vim.fs.dirname(call_site_path)))
+    :map(function(name, type) return type == "directory" and { import = import_prefix .. name } or nil end)
+    :totable()
+end
 
 ---@overload fun(var: string, global?: boolean): state: boolean
 function Utils.get_var(var, global)
