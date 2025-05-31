@@ -32,7 +32,9 @@ return {
         lualine_c = {
           "filename",
           {
+            ---@diagnostic disable-next-line: undefined-field  TODO: Lua doesn't recognize fields of NoiceStatus.
             function() return require("noice").api.status.search.get() end,
+            ---@diagnostic disable-next-line: undefined-field
             cond = function() return require("noice").api.status.search.has() end,
           },
         },
