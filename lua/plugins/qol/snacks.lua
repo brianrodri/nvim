@@ -40,6 +40,7 @@ return {
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      toggle = { enabled = true },
 
       -- TODO: Extract to "plugins.ui.snacks-dashboard"
       dashboard = {
@@ -108,6 +109,7 @@ return {
         SnacksDashboardFooter = "Comment",
         SnacksDashboardSpecial = "Green",
       })
+      require("my.toggle_snacks").setup_keymaps()
     end,
   },
 }

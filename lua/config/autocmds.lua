@@ -1,4 +1,3 @@
-local Utils = require("my.utils")
 local my_lsp_keymaps = require("my.lsp_keymaps")
 
 ---@type string[]
@@ -34,30 +33,6 @@ vim.api.nvim_create_autocmd("FileType", {
       end
       vim.keymap.set("n", "q", close_buffer, { buffer = event.buf, silent = true, desc = "Close Buffer" })
     end)
-  end,
-})
-
--- Setup complex keymaps that depend on 2+ *independent* plugins to be implemented.
-vim.api.nvim_create_autocmd("User", {
-  once = true,
-  nested = true,
-  pattern = "VeryLazy",
-  desc = "Setup complex keymaps",
-  callback = function()
-    local toggle = require("snacks.toggle")
-    Utils.var_toggle({ desc = "Auto Format", var_name = "autoformat", global = false }):map("<leader>oq")
-    Utils.var_toggle({ desc = "Auto Format", var_name = "autoformat", global = true }):map("<leader>oQ")
-    toggle.option("colorcolumn", { name = "Color Column", on = "+1", off = "" }):map("<leader>oc")
-    toggle.diagnostics():map("<leader>od")
-    toggle.inlay_hints():map("<leader>oh")
-    toggle.indent():map("<leader>oi")
-    toggle.line_number():map("<leader>ol")
-    toggle.animate():map("<leader>om")
-    toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>or")
-    toggle.option("spell", { name = "Spelling" }):map("<leader>os")
-    toggle.treesitter():map("<leader>ot")
-    toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
-    toggle.zoom():map("<leader>oz")
   end,
 })
 

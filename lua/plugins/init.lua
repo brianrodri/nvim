@@ -1,2 +1,2 @@
-local flattened_plugins = require("my.utils").flatten_plugin_dir()
-return flattened_plugins
+local plugins = require("my.utils").flatten_submodule_plugins()
+return plugins
