@@ -30,7 +30,6 @@ return {
     { "<leader>sc", function() require("snacks.picker").files({ cwd = config_dir }) end, desc = "Find Config Files" },
     { "<leader>sf", function() require("snacks.picker").files() end, desc = "Find Files" },
     { "<leader>sg", function() require("snacks.picker").git_files() end, desc = "Find Git Files" },
-    { "<leader>sG", function() require("snacks.picker").git_status() end, desc = "Find Changed Git Files" },
     { "<leader>sh", function() require("snacks.picker").highlights() end, desc = "Find Highlights" },
     { "<leader>sk", function() require("snacks.picker").keymaps() end, desc = "Find Keymaps" },
     { "<leader>sl", function() require("snacks.picker").files({ cwd = plugin_dir, follow = true }) end, desc = "Find Plugin Files" },
