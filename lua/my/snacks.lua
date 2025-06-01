@@ -1,5 +1,10 @@
+local my_vaults = require("my.vaults")
+
 local MY_AUTOFORMAT_OPTION = "autoformat"
 local MY_AUTOFORMAT_OPTION_DESC = "Auto Format"
+
+local config_dir = vim.fn.stdpath("config")
+local plugin_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
 
 ---@param opts { global?: boolean }
 ---@return snacks.toggle.Class
@@ -61,14 +66,14 @@ return {
       -- stylua: ignore
       -- luacheck: no max line length
       keys = {
-        { icon = " ", key = "f", desc = "Find File", action = ':lua Snacks.dashboard.pick("files")' },
-        { icon = " ", key = "n", desc = "New File", action = ":enew | startinsert" },
-        { icon = " ", key = "g", desc = "Find Text", action = ':lua Snacks.dashboard.pick("live_grep")' },
-        { icon = " ", key = "r", desc = "Recent Files", action = ':lua Snacks.dashboard.pick("oldfiles")' },
-        { icon = " ", key = "c", desc = "Config", action = ':lua Snacks.dashboard.pick("files", { cwd = vim.fn.stdpath("config") })' },
-        { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-        { icon = " ", key = "g", desc = "Lazygit", action = ":lua Snacks.lazygit()" },
-        { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        { icon = "󱎸 ", key = "/", desc = "Grep",        action = function() require("snacks.dashboard").pick("live_grep") end },
+        { icon = "󰋻 ", key = "o", desc = "Open Inbox",  action = string.format(':e %s | exec "normal! Go" | startinsert!', my_vaults.inbox_note) },
+        { icon = "󰱼 ", key = "f", desc = "Find File",   action = function() require("snacks.dashboard").pick("files") end },
+        { icon = "󱋡 ", key = "r", desc = "Recent File", action = function() require("snacks.dashboard").pick("oldfiles") end },
+        { icon = "󱁻 ", key = "c", desc = "Config File", action = function() require("snacks.dashboard").pick("files", { cwd = vim.fn.stdpath("config") }) end },
+        { icon = " ", key = "g", desc = "Lazygit",     action = function() require("snacks").lazygit() end },
+        { icon = "󰒲 ", key = "l", desc = "Lazy",        action = ":Lazy" },
+        { icon = " ", key = "q", desc = "Quit",        action = ":qa" },
       },
     },
   },
@@ -100,4 +105,28 @@ return {
     snacks_toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
     snacks_toggle.zoom():map("<leader>oz")
   end,
+
+  -- stylua: ignore
+  -- luacheck: no max line length
+  ---@module "which-key"
+  ---@type wk.Spec[]
+  picker_keymaps = {
+    { "<leader>s.", function() require("snacks.picker").resume() end, desc = "Resume Finding" },
+    { "<leader>s?", function() require("snacks.picker").help() end, desc = "Find Help Docs" },
+    { "<leader>s*", function() require("snacks.picker").grep_word() end, desc = "Find Word Under Cursor" },
+    { "<leader>s/", function() require("snacks.picker").grep() end, desc = "Grep Lines" },
+    { "<leader>s:", function() require("snacks.picker").commands() end, desc = "Find Commands" },
+    { "<leader>sb", function() require("snacks.picker").buffers() end, desc = "Find Buffers" },
+    { "<leader>sc", function() require("snacks.picker").files({ cwd = config_dir }) end, desc = "Find Config Files" },
+    { "<leader>sf", function() require("snacks.picker").files() end, desc = "Find Files" },
+    { "<leader>sg", function() require("snacks.picker").git_files() end, desc = "Find Git Files" },
+    { "<leader>sG", function() require("snacks.picker").git_status() end, desc = "Find Changed Git Files" },
+    { "<leader>sh", function() require("snacks.picker").highlights() end, desc = "Find Highlights" },
+    { "<leader>sk", function() require("snacks.picker").keymaps() end, desc = "Find Keymaps" },
+    { "<leader>sl", function() require("snacks.picker").files({ cwd = plugin_dir, follow = true }) end, desc = "Find Plugin Files" },
+    { "<leader>sr", function() require("snacks.picker").recent({ cwd_only = true, follow = true }) end, desc = "Find Recent Files" },
+    { "<leader>ss", function() require("snacks.picker").pickers() end, desc = "Find Telescope Builtins" },
+    { "<leader>sz", function() require("snacks.picker").spelling() end, desc = "Find Spelling Suggestions" },
+    { "<leader>sp", function() require("snacks.picker").projects() end, desc = "Find Projects" },
+  },
 }

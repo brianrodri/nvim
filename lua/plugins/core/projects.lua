@@ -20,8 +20,6 @@ return {
     dependencies = { "ahmedkhalf/project.nvim" },
     opts = { extensions = { projects = {} } },
     keys = {
-      { "<leader>sp", function() require("telescope").extensions.projects.projects() end, desc = "Find Projects" },
-      { "<leader>ps", function() require("telescope").extensions.projects.projects() end, desc = "Find Projects" },
       { "<leader>pr", function() require("project_nvim").get_recent_projects() end, desc = "Recent Projects" },
     },
   },
