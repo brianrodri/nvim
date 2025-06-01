@@ -10,8 +10,7 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     ---@module "noice"
-    ---@type NoiceConfig
-    ---@diagnostic disable: missing-fields
+    ---@type NoiceConfig|{}
     opts = {
       lsp = {
         override = {

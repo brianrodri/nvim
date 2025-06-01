@@ -5,8 +5,7 @@ return {
   event = "VimEnter",
   dependencies = { "nvim-lua/plenary.nvim" },
   ---@module "todo-comments"
-  ---@type TodoOptions
-  ---@diagnostic disable: missing-fields
+  ---@type TodoOptions|{}
   opts = {
     signs = false,
     -- NOTE: Adapted from https://help.obsidian.md/callouts#Supported+types

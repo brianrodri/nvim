@@ -21,12 +21,12 @@ return {
     branch = "substitution-context",
     dependencies = { "nvim-lua/plenary.nvim" },
     ---@module "obsidian"
-    ---@type obsidian.config.ClientOpts
-    ---@diagnostic disable: missing-fields
+    ---@type obsidian.config.ClientOpts|{}
     opts = {
-      completion = { blink = true },
       ui = { enable = false },
       workspaces = { Vaults.personal },
+      ---@type obsidian.config.CompletionOpts|{}
+      completion = { blink = true },
     },
     -- stylua: ignore
     -- luacheck: no max line length
@@ -43,7 +43,7 @@ return {
   {
     "ahmedkhalf/project.nvim",
     ---@module "project_nvim"
-    ---@type ProjectOptions
+    ---@type ProjectOptions|{}
     opts = { patterns = { ".obsidian" } },
     opts_extend = { "patterns" },
   },

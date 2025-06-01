@@ -8,14 +8,14 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     ---@module "copilot"
-    ---@type CopilotConfig
-    ---@diagnostic disable: missing-fields
+    ---@type CopilotConfig|{}
     opts = {
+      workspace_folders = { Vaults.vault_root },
+      ---@type SuggestionConfig|{}
       suggestion = { enabled = false },
+      ---@type PanelConfig|{}
       panel = { enabled = false },
-      workspace_folders = { tostring(Vaults.personal.path) },
     },
-    ---@diagnostic enable: missing-fields
   },
 
   {

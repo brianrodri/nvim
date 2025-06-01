@@ -23,13 +23,13 @@ return {
   inbox_note = INBOX_NOTE,
 
   ---@module "obsidian"
-  ---@type obsidian.workspace.WorkspaceSpec
-  ---@diagnostic disable: missing-fields
+  ---@type obsidian.workspace.WorkspaceSpec|{}
   personal = {
     name = "Vault",
     ---@type string
     path = VAULT_ROOT,
     strict = true,
+    ---@type obsidian.config.ClientOpts|{}
     overrides = {
       note_id_func = function(title) return title or vim.fn.strftime(DATE_FMT) end,
       note_path_func = function(spec)
@@ -40,8 +40,11 @@ return {
       end,
       disable_frontmatter = true,
       use_advanced_uri = true,
+      ---@type obsidian.config.AttachmentsOpts|{}
       attachments = { img_folder = ATTACHMENTS_DIR },
+      ---@type obsidian.config.DailyNotesOpts|{}
       daily_notes = { folder = DAILY_DIR, template = "Daily Template.md", workdays_only = false },
+      ---@type obsidian.config.TemplateOpts|{}
       templates = {
         folder = TEMPLATES_DIR,
         date_format = DATE_FMT,

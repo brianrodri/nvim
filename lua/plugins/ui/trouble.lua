@@ -3,8 +3,7 @@
 return {
   "folke/trouble.nvim",
   cmd = "Trouble",
-  ---@type trouble.Config
-  ---@diagnostic disable-next-line: missing-fields
+  ---@type trouble.Config|{}
   opts = {
     follow = false,
     pinned = true,
@@ -13,9 +12,7 @@ return {
     warn_no_results = false,
     open_no_results = true,
     preview = { scratch = false },
-    ---@type table<string, trouble.Mode>
     modes = {
-      ---@diagnostic disable-next-line: missing-fields
       my_lsp_document_symbols = {
         mode = "lsp_document_symbols",
         win = { position = "right", size = 80, minimal = true },
