@@ -32,7 +32,7 @@ return {
     -- luacheck: no max line length
     keys = {
       { "<leader>na", function() append_prompt_to_note(Vaults.inbox_note) end, desc = "Append To Inbox" },
-      { "<leader>no", string.format(':e %s | exec "normal! Go" | startinsert!<cr>', Vaults.inbox_note), desc = "Open Inbox" },
+      { "<leader>no", string.format(':e %s | exec "normal! Go- " | startinsert!<cr>', Vaults.inbox_note), desc = "Open Inbox" },
       { "<leader>n/", function() require("telescope.builtin").live_grep({ cwd = Vaults.personal.path, follow = true }) end, desc = "Grep Notes" },
       { "<leader>ns", function() require("telescope.builtin").find_files({ cwd = Vaults.personal.path, follow = true }) end, desc = "Search Notes" },
       { "<leader>nn", function() require("obsidian").get_client():command("new", { args = "" }) end, desc = "New Note" },
