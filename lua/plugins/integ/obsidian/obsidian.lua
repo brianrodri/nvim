@@ -1,4 +1,4 @@
-local Vaults = require("my.vaults")
+local my_vault = require("my.vault")
 
 --- Appends text from a user prompt to the note located at the given path.
 ---
@@ -24,17 +24,17 @@ return {
     ---@type obsidian.config.ClientOpts|{}
     opts = {
       ui = { enable = false },
-      workspaces = { Vaults.personal },
+      workspaces = { my_vault.personal },
       ---@type obsidian.config.CompletionOpts|{}
       completion = { blink = true },
     },
     -- stylua: ignore
     -- luacheck: no max line length
     keys = {
-      { "<leader>na", function() append_prompt_to_note(Vaults.inbox_note) end, desc = "Append To Inbox" },
-      { "<leader>no", string.format(':e %s | exec "normal! Go- " | startinsert!<cr>', Vaults.inbox_note), desc = "Open Inbox" },
-      { "<leader>n/", function() require("telescope.builtin").live_grep({ cwd = Vaults.personal.path, follow = true }) end, desc = "Grep Notes" },
-      { "<leader>ns", function() require("telescope.builtin").find_files({ cwd = Vaults.personal.path, follow = true }) end, desc = "Search Notes" },
+      { "<leader>na", function() append_prompt_to_note(my_vault.inbox_note) end, desc = "Append To Inbox" },
+      { "<leader>no", string.format(':e %s | exec "normal! Go- " | startinsert!<cr>', my_vault.inbox_note), desc = "Open Inbox" },
+      { "<leader>n/", function() require("telescope.builtin").live_grep({ cwd = my_vault.root_dir, follow = true }) end, desc = "Grep Notes" },
+      { "<leader>ns", function() require("telescope.builtin").find_files({ cwd = my_vault.root_dir, follow = true }) end, desc = "Search Notes" },
       { "<leader>nn", function() require("obsidian").get_client():command("new", { args = "" }) end, desc = "New Note" },
       { "<leader>nt", function() require("obsidian").get_client():command("today", { args = "" }) end, desc = "Open Today's Note" },
     },

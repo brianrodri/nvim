@@ -1,4 +1,4 @@
-local my_vaults = require("my.vaults")
+local my_vault = require("my.vault")
 
 return {
   ---@type snacks.dashboard.Config|{}
@@ -37,7 +37,7 @@ return {
       -- luacheck: no max line length
       keys = {
         { icon = "󱎸 ", key = "/", desc = "Grep",        action = function() require("snacks.dashboard").pick("live_grep") end },
-        { icon = "󰋻 ", key = "o", desc = "Open Inbox",  action = string.format(':e %s | exec "normal! Go- " | startinsert!', my_vaults.inbox_note) },
+        { icon = "󰋻 ", key = "o", desc = "Open Inbox",  action = string.format(':e %s | exec "normal! Go- " | startinsert!', my_vault.inbox_note) },
         { icon = "󰱼 ", key = "f", desc = "Find File",   action = function() require("snacks.dashboard").pick("files") end },
         { icon = "󱋡 ", key = "r", desc = "Recent File", action = function() require("snacks.dashboard").pick("oldfiles") end },
         { icon = "󱁻 ", key = "c", desc = "Config File", action = function() require("snacks.dashboard").pick("files", { cwd = vim.fn.stdpath("config") }) end },

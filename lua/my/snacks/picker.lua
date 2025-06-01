@@ -1,4 +1,4 @@
-local my_vaults = require("my.vaults")
+local my_vault = require("my.vault")
 
 local config_dir = vim.fn.stdpath("config")
 local plugin_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
@@ -36,7 +36,7 @@ return {
     { "<leader>sh", function() require("snacks.picker").highlights() end, desc = "Find Highlights" },
     { "<leader>sk", function() require("snacks.picker").keymaps() end, desc = "Find Keymaps" },
     { "<leader>sl", function() require("snacks.picker").files({ cwd = plugin_dir, follow = true }) end, desc = "Find Plugins" },
-    { "<leader>sn", function() require("snacks.picker").files({ cwd = my_vaults.vault_root }) end, desc = "Find Notes" },
+    { "<leader>sn", function() require("snacks.picker").files({ cwd = my_vault.root_dir }) end, desc = "Find Notes" },
     { "<leader>sp", function() require("snacks.picker").projects() end, desc = "Find Projects" },
     { "<leader>sr", function() require("snacks.picker").recent({ cwd_only = true, follow = true }) end, desc = "Find Recents" },
     { "<leader>ss", function() require("snacks.picker").spelling() end, desc = "Find Spellings" },

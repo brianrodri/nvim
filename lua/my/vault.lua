@@ -19,14 +19,13 @@ local format_date_of_note = function(ctx, fmt, delta_days)
 end
 
 return {
-  vault_root = VAULT_ROOT,
+  root_dir = VAULT_ROOT,
   inbox_note = INBOX_NOTE,
 
   ---@module "obsidian"
   ---@type obsidian.workspace.WorkspaceSpec|{}
   personal = {
     name = "Vault",
-    ---@type string
     path = VAULT_ROOT,
     strict = true,
     ---@type obsidian.config.ClientOpts|{}
