@@ -1,4 +1,5 @@
 local my_snacks_dashboard = require("my.snacks.dashboard")
+local my_snacks_input = require("my.snacks.input")
 local my_snacks_picker = require("my.snacks.picker")
 local my_snacks_toggle = require("my.snacks.toggle")
 
@@ -22,7 +23,8 @@ return {
       bigfile = { enabled = true },
       explorer = { enabled = false }, -- NOTE: because I prefer mini.files.
       image = { enabled = true },
-      input = { enabled = true },
+      input = my_snacks_input.config,
+      lazygit = { enabled = true },
       notifier = { enabled = true },
       picker = my_snacks_picker.config,
       quickfile = { enabled = true },
