@@ -23,7 +23,7 @@ return {
       { "<leader>ns", function() require("snacks.picker").files({ cwd = my_vault.root_dir }) end, desc = "Find Notes" },
       { "<leader>na", function() my_vault.actions.append_prompt_to_note(my_vault.inbox_note) end, desc = "Append To Inbox" },
       { "<leader>no", function() my_vault.actions.open_note(my_vault.inbox_note) end, desc = "Open Inbox" },
-      { "<leader>nO", function() my_vault.actions.open_note_in_append_mode(my_vault.inbox_note) end, desc = "Append To Inbox" },
+      { "<leader>nO", function() my_vault.actions.open_note_in_append_mode(my_vault.inbox_note, "- ") end, desc = "Append To Inbox" },
     },
   },
 

@@ -9,22 +9,28 @@ return {
   inbox_note = INBOX_NOTE,
 
   actions = {
-    open_note = function(note) require("obsidian").get_client():open_note(note) end,
+    ---@param note_path string
+    open_note = function(note_path) require("obsidian").get_client():open_note(note_path) end,
 
-    open_note_in_append_mode = function(note, auto_appended_text)
-      require("obsidian").get_client():open_note(note, {
+    ---@param note_path string
+    ---@param default? string
+    open_note_in_append_mode = function(note_path, default)
+      default = default or ""
+      require("obsidian").get_client():open_note(note_path, {
         callback = function()
-          vim.cmd(string.format("normal! Go%s", auto_appended_text or ""))
+          vim.cmd("normal! Go" .. default)
           vim.cmd("startinsert!")
         end,
       })
     end,
 
-    append_prompt_to_note = function(path)
+    ---@param note_path string
+    ---@param default? string
+    append_prompt_to_note = function(note_path, default)
       local client = require("obsidian").get_client()
-      local dest_note = assert(client:resolve_note(path), string.format('failed to resolve note at path: "%s"', path))
+      local dest_note = assert(client:resolve_note(note_path), "unable to resolve note: " .. note_path)
       require("snacks.input").input(
-        { prompt = string.format("Append To %s", dest_note:display_name()), default = "- " },
+        { prompt = string.format("Append To %s", dest_note:display_name()), default = default },
         function(text)
           if vim.fn.empty(text) == 1 then return end
           client:write_note(dest_note, { update_content = function(lines) return vim.list_extend(lines, { text }) end })
@@ -46,7 +52,6 @@ return {
       notes_subdir = FLEETING_NOTES_DIR,
       new_notes_location = "notes_subdir",
       disable_frontmatter = true,
-      use_advanced_uri = true,
       ---@type obsidian.config.AttachmentsOpts|{}
       attachments = { img_folder = ATTACHMENTS_DIR },
       ---@type obsidian.config.DailyNotesOpts|{}
