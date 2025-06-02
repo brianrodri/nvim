@@ -11,6 +11,8 @@ return {
     opts = {
       ui = { enable = false },
       workspaces = { my_vault.personal },
+      ---@type obsidian.config.OpenOpts|{}
+      open = { use_advanced_uri = true },
       ---@type obsidian.config.CompletionOpts|{}
       completion = { blink = true },
     },
