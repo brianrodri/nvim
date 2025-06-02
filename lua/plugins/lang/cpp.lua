@@ -8,19 +8,8 @@ return {
   },
 
   {
-    "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { cpp = { "clang-format" }, c = { "clang-format" } } },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     ---@type my.LspConfig
     opts = { clangd = {} },
-  },
-
-  {
-    "mfussenegger/nvim-lint",
-    ---@type my.LintOpts
-    opts = { linters_by_ft = { cpp = { "cpplint" }, c = { "cpplint" } } },
   },
 }
