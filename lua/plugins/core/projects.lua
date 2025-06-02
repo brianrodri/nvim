@@ -2,7 +2,8 @@
 ---@type LazySpec
 return {
   {
-    "ahmedkhalf/project.nvim",
+    "brianrodri/projects.nvim",
+    commit = "adf0511",
     main = "project_nvim",
     ---@module "project_nvim"
     ---@type ProjectOptions
@@ -17,7 +18,7 @@ return {
 
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "ahmedkhalf/project.nvim" },
+    dependencies = { "brianrodri/projects.nvim" },
     opts = { extensions = { projects = {} } },
     keys = {
       { "<leader>pr", function() require("project_nvim").get_recent_projects() end, desc = "Recent Projects" },

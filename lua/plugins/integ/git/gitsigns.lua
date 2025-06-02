@@ -64,7 +64,7 @@ return {
   },
 
   {
-    "ahmedkhalf/project.nvim",
+    "brianrodri/projects.nvim",
     ---@module "project_nvim"
     ---@type ProjectOptions
     opts = { patterns = { ".git" } },
