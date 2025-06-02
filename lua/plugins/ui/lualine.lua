@@ -10,7 +10,6 @@ return {
     "folke/noice.nvim",
   },
   opts = {
-    theme = "everforest",
     sections = {
       lualine_a = { "mode" },
       lualine_b = { "diagnostics" },
