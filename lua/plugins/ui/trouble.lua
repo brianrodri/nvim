@@ -7,14 +7,15 @@ return {
   cmd = "Trouble",
   ---@type trouble.Config|{}
   opts = {
-    follow = false,
-    pinned = true,
     focus = true,
-    multiline = false,
+    follow = false,
     warn_no_results = false,
     open_no_results = true,
-    preview = { scratch = false },
+    restore = false,
     modes = {
+      lsp_base = {
+        params = { include_current = true },
+      },
       my_lsp_document_symbols = {
         mode = "lsp_document_symbols",
         win = { position = "right", size = 80, minimal = true },
