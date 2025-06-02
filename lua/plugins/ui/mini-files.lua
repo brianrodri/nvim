@@ -15,27 +15,11 @@ end
 ---@module "lazy"
 ---@type LazySpec
 return {
-  "echasnovski/mini.nvim",
-  main = "mini.files",
+  "echasnovski/mini.files",
+  lazy = false,
   opts = {
-    windows = {
-      preview = true,
-      width_focus = 32,
-      width_nofocus = 16,
-      width_preview = 64,
-    },
-    mappings = {
-      close = "q",
-      go_in = "",
-      go_in_plus = "L",
-      go_out = "",
-      go_out_plus = "H",
-      reset = "<esc>",
-      reveal_cwd = "g.",
-      synchronize = "=",
-      trim_left = "<m-h>",
-      trim_right = "<m-l>",
-    },
+    mappings = { go_in = "", go_out = "", reset = "<esc>" },
+    windows = { preview = true },
   },
   keys = {
     { "-", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, { desc = "Open Directory" } },
@@ -46,20 +30,18 @@ return {
       callback = function(event)
         local buf_id = event.data.buf_id
         local buf_keymap = function(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { desc = desc, buffer = buf_id }) end
-        buf_keymap("<C-l>", function() open_in_split("belowright vertical") end, "Open to right")
-        buf_keymap("<C-j>", function() open_in_split("belowright horizontal") end, "Open to bottom")
-        buf_keymap("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open to top")
-        buf_keymap("<C-h>", function() open_in_split("aboveleft vertical") end, "Open to left")
+        buf_keymap("<C-l>", function() open_in_split("belowright vertical") end, "Open To Right")
+        buf_keymap("<C-j>", function() open_in_split("belowright horizontal") end, "Open To Bottom")
+        buf_keymap("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open To Top")
+        buf_keymap("<C-h>", function() open_in_split("aboveleft vertical") end, "Open To Left")
       end,
     })
-
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesActionRename",
       callback = function(event)
         vim.schedule(function() require("snacks.rename").on_rename_file(event.data.from, event.data.to) end)
       end,
     })
-
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesActionDelete",
       callback = function(event)
