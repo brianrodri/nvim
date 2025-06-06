@@ -1,7 +1,7 @@
 local my_vault = require("my.vault")
 
-local config_dir = vim.fn.stdpath("config")
-local plugin_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+local config_dir = assert(vim.uv.fs_realpath(vim.fn.stdpath("config")))
+local plugin_dir = assert(vim.uv.fs_realpath(vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")))
 
 return {
   ---@module "snacks"
@@ -31,13 +31,16 @@ return {
     { "<leader>sa", function() require("snacks.picker").pickers() end, desc = "All Pickers" },
     { "<leader>sb", function() require("snacks.picker").buffers() end, desc = "Find Buffers" },
     { "<leader>sc", function() require("snacks.picker").files({ cwd = config_dir }) end, desc = "Find Configs" },
+    { "<leader>sC", function() require("mini.files").open(config_dir, true) end, desc = "Find Configs" },
     { "<leader>sf", function() require("snacks.picker").files() end, desc = "Find Files" },
     { "<leader>sg", function() require("snacks.picker").git_files() end, desc = "Find Git Files" },
     { "<leader>sh", function() require("snacks.picker").highlights() end, desc = "Find Highlights" },
     { "<leader>sk", function() require("snacks.picker").keymaps() end, desc = "Find Keymaps" },
     { "<leader>sl", function() require("snacks.picker").files({ cwd = plugin_dir, follow = true }) end, desc = "Find Plugins" },
+    { "<leader>sL", function() require("mini.files").open(plugin_dir, true) end, desc = "Find Plugins" },
     { "<leader>sm", function() require("snacks.picker").man() end, desc = "Find Man Pages" },
     { "<leader>sn", function() require("snacks.picker").files({ cwd = my_vault.root_dir }) end, desc = "Find Notes" },
+    { "<leader>sN", function() require("mini.files").open(my_vault.root_dir, true) end, desc = "Find Notes" },
     { "<leader>sp", function() require("snacks.picker").projects() end, desc = "Find Projects" },
     { "<leader>sr", function() require("snacks.picker").recent({ cwd_only = true, follow = true }) end, desc = "Find Recents" },
     { "<leader>ss", function() require("snacks.picker").spelling() end, desc = "Find Spellings" },
