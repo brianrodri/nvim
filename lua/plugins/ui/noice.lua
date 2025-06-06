@@ -25,6 +25,8 @@ return {
         inc_rename = true,
         lsp_doc_border = true,
       },
+      views = { mini = { position = { row = 0, col = "100%" }, reverse = false } },
+      messages = { view = "mini", view_warn = "mini" },
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
