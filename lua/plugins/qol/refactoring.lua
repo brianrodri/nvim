@@ -17,9 +17,9 @@ return {
       { "<leader>ri", function() return require("refactoring").refactor("Inline Variable") end, mode = { "n", "x" }, expr = true, desc = "Inline Variable" },
       { "<leader>rI", function() return require("refactoring").refactor("Inline Function") end, mode = { "n", "x" }, expr = true, desc = "Inline Function" },
     },
-    opts = {
-      show_success_message = true,
-    },
+    ---@module "refactoring"
+    ---@type refactor.ConfigOpts
+    opts = { show_success_message = true },
   },
 
   {
