@@ -9,6 +9,7 @@ return {
   opts = {
     spec = {
       -- Groups
+      { "<leader>a", group = "ai", icon = { icon = "󰚩 ", hl = "WhichKeyIconBlue" } },
       { "<leader>b", group = "buffer", icon = { icon = "󰈔 ", hl = "WhichKeyIconCyan" } },
       { "<leader>c", group = "code", icon = { icon = " ", hl = "WhichKeyIconOrange" } },
       { "<leader>d", group = "debug", icon = { icon = "󰃤 ", hl = "WhichKeyIconRed" } },
