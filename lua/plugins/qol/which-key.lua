@@ -19,6 +19,7 @@ return {
       { "<leader>o", group = "toggle", icon = { icon = " ", hl = "WhichKeyIconYellow" } },
       { "<leader>p", group = "project", icon = { icon = " ", hl = "WhichKeyIconYellow" } },
       { "<leader>q", group = "quit", icon = { icon = "󰈆 ", hl = "WhichKeyIconRed" } },
+      { "<leader>r", group = "refactor" },
       { "<leader>s", group = "search", icon = { icon = " ", hl = "WhichKeyIconGreen" } },
       { "<leader>t", group = "test", icon = { icon = "󰙨 ", hl = "WhichKeyIconGreen" } },
       { "<leader>x", group = "trouble", icon = { icon = "󱍼 ", hl = "WhichKeyIconRed" } },
