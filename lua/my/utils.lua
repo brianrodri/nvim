@@ -1,6 +1,6 @@
-local Utils = {}
+local my_env = require("my.env")
 
-local PLUGIN_DIR = assert(vim.uv.fs_realpath(vim.fn.stdpath("config") .. "/lua/plugins"))
+local Utils = {}
 
 ---@param stack_index number
 ---@return string script_path
@@ -9,7 +9,9 @@ local function get_script_path_from_execution_stack(stack_index)
 end
 
 ---@param path string
-local function get_import_basename(path) return vim.startswith(path, PLUGIN_DIR) and vim.fs.basename(path) or nil end
+local function get_import_basename(path)
+  return vim.startswith(path, my_env.nvim_config_plugins_dir) and vim.fs.basename(path) or nil
+end
 
 --- Returns `LazySpec` objects for each folder in the current script's directory.
 ---
