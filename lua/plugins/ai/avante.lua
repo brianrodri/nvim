@@ -14,7 +14,10 @@ return {
     build = "make",
     ---@module "avante"
     ---@type avante.Config|{}
-    opts = { provider = "claude" },
+    opts = {
+      input = { provider = "snacks" },
+      provider = "claude",
+    },
     enabled = vim.fn.getenv("ANTHROPIC_API_KEY") ~= nil,
   },
 
