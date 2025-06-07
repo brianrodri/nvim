@@ -3,12 +3,13 @@
 ---@param direction "belowright vertical"|"belowright horizontal"|"aboveleft horizontal"|"aboveleft vertical"
 local function open_in_split(direction)
   local MiniFiles = require("mini.files")
-  local cur_target = MiniFiles.get_explorer_state().target_window
-  local new_target = vim.api.nvim_win_call(cur_target, function()
+
+  local cur_win_id = MiniFiles.get_explorer_state().target_window
+  local new_win_id = vim.api.nvim_win_call(cur_win_id, function()
     vim.cmd(direction .. " split")
     return vim.api.nvim_get_current_win()
   end)
-  MiniFiles.set_target_window(new_target)
+  MiniFiles.set_target_window(new_win_id)
   MiniFiles.go_in({ close_on_file = true })
 end
 
