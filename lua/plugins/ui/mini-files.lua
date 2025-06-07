@@ -12,6 +12,35 @@ local function open_in_split(direction)
   MiniFiles.go_in({ close_on_file = true })
 end
 
+--- Within a mini.files buffer: adds/removes the entry under the cursor to avante's list of selected files.
+---
+---@param buf_id integer
+---@param set_selected? boolean
+local function avante_set_entry_enabled(buf_id, set_selected)
+  local Avante = require("avante")
+  local AvanteUtils = require("avante.utils")
+  local MiniFiles = require("mini.files")
+
+  ---@type nil|{ name: string, path: string, fs_type: "directory"|"file" }
+  local entry = MiniFiles.get_fs_entry(buf_id)
+  if not entry then
+    vim.notify("cursor path not valid", vim.log.levels.ERROR, { title = "Avante", id = "ERR:mini.files:avante" })
+    return
+  end
+
+  local sidebar = Avante.get()
+  if set_selected then
+    sidebar.file_selector:add_selected_file(AvanteUtils.relative_path(entry.path))
+  else
+    vim
+      .iter(AvanteUtils.scan_directory({ directory = entry.path, add_dirs = false }))
+      :map(AvanteUtils.relative_path)
+      :each(function(rel_path) sidebar.file_selector:remove_selected_file(rel_path) end)
+  end
+
+  vim.notify("file selection synced", vim.log.levels.INFO, { title = "Avante", id = "OK:mini.files:avante" })
+end
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -34,6 +63,8 @@ return {
         buf_keymap("<C-j>", function() open_in_split("belowright horizontal") end, "Open To Bottom")
         buf_keymap("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open To Top")
         buf_keymap("<C-h>", function() open_in_split("aboveleft vertical") end, "Open To Left")
+        buf_keymap("+", function() avante_set_entry_enabled(buf_id, true) end, "Avante: Select Path")
+        buf_keymap("-", function() avante_set_entry_enabled(buf_id, false) end, "Avante: Unselect Path")
       end,
     })
     vim.api.nvim_create_autocmd("User", {
