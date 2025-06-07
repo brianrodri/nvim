@@ -41,7 +41,7 @@ return {
     { "<leader>sm", function() require("snacks.picker").man() end, desc = "Find Man Pages" },
     { "<leader>sn", function() require("snacks.picker").files({ dirs = { my_vault.root_dir } }) end, desc = "Find Notes" },
     { "<leader>sN", function() require("mini.files").open(my_vault.root_dir, true) end, desc = "Open Vault", icon = "󰙅 " },
-    { "<leader>sp", function() require("snacks.picker").projects() end, desc = "Find Projects" },
+    { "<leader>sp", function() require("snacks.picker").projects({ matcher = { cwd_bonus = true } }) end, desc = "Find Projects" },
     { "<leader>sr", function() require("snacks.picker").recent({ filter = { cwd = true } }) end, desc = "Find Recents" },
     { "<leader>ss", function() require("snacks.picker").spelling() end, desc = "Find Spellings" },
   },
