@@ -22,7 +22,7 @@ return {
     windows = { preview = true },
   },
   keys = {
-    { "-", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, { desc = "Open Directory" } },
+    { "-", function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end, { desc = "Open Directory" } },
   },
   init = function()
     vim.api.nvim_create_autocmd("User", {
