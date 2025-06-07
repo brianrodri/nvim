@@ -62,6 +62,7 @@ return {
     overrides = {
       notes_subdir = FLEETING_NOTES_DIR,
       new_notes_location = "notes_subdir",
+      note_id_func = function(title) return title end,
       disable_frontmatter = true,
       ---@type obsidian.config.AttachmentsOpts|{}
       attachments = { img_folder = ATTACHMENTS_DIR },
