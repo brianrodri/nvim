@@ -7,23 +7,24 @@ return {
   ---@module "which-key"
   ---@class wk.Opts
   opts = {
+    -- stylua: ignore
     spec = {
       -- Groups
-      { "<leader>a", group = "ai", icon = { icon = "󰚩 ", hl = "WhichKeyIconBlue" } },
-      { "<leader>b", group = "buffer", icon = { icon = "󰈔 ", hl = "WhichKeyIconCyan" } },
-      { "<leader>c", group = "code", icon = { icon = " ", hl = "WhichKeyIconOrange" } },
-      { "<leader>d", group = "debug", icon = { icon = "󰃤 ", hl = "WhichKeyIconRed" } },
-      { "<leader>f", group = "find", icon = { icon = "󰈞", hl = "WhichKeyIconCyan" } },
-      { "<leader>g", group = "git", icon = { icon = " ", hl = "WhichKeyIconGrey" } },
-      { "<leader>l", group = "lazy", icon = { icon = "󰒲 ", hl = "WhichKeyIconCyan" } },
-      { "<leader>n", group = "notes", icon = { icon = "󰠮 ", hl = "WhichKeyIconPurple" } },
-      { "<leader>o", group = "toggle", icon = { icon = " ", hl = "WhichKeyIconYellow" } },
-      { "<leader>p", group = "project", icon = { icon = " ", hl = "WhichKeyIconYellow" } },
-      { "<leader>q", group = "quit", icon = { icon = "󰈆 ", hl = "WhichKeyIconRed" } },
-      { "<leader>r", group = "refactor" },
-      { "<leader>s", group = "search", icon = { icon = "󱎸 ", hl = "WhichKeyIconGreen" } },
-      { "<leader>t", group = "test", icon = { icon = "󰙨 ", hl = "WhichKeyIconGreen" } },
-      { "<leader>x", group = "trouble", icon = { icon = "󱍼 ", hl = "WhichKeyIconRed" } },
+      { "<leader>a", group = "ai",       icon = { icon = "󰚩 ", hl = "WhichKeyIconBlue" } },
+      { "<leader>b", group = "buffer",   icon = { icon = "󰈔 ", hl = "WhichKeyIconCyan" } },
+      { "<leader>c", group = "code",     icon = { icon = " ", hl = "WhichKeyIconOrange" } },
+      { "<leader>d", group = "debug",    icon = { icon = "󰃤 ", hl = "WhichKeyIconRed" } },
+      { "<leader>f", group = "find",     icon = { icon = "󰥨 ", hl = "WhichKeyIconCyan" } },
+      { "<leader>g", group = "git",      icon = { icon = " ", hl = "WhichKeyIconGrey" } },
+      { "<leader>l", group = "lazy",     icon = { icon = "󰒲 ", hl = "WhichKeyIconCyan" } },
+      { "<leader>n", group = "notes",    icon = { icon = "󰠮 ", hl = "WhichKeyIconPurple" } },
+      { "<leader>o", group = "toggle",   icon = { icon = " ", hl = "WhichKeyIconYellow" } },
+      { "<leader>p", group = "project",  icon = { icon = " ", hl = "WhichKeyIconYellow" } },
+      { "<leader>q", group = "quit",     icon = { icon = "󰈆 ", hl = "WhichKeyIconRed" } },
+      { "<leader>r", group = "refactor", icon = { icon = "󰛔 ", hl = "WhichKeyIconGreen󰛔" } },
+      { "<leader>s", group = "search",   icon = { icon = "󱎸 ", hl = "WhichKeyIconGreen" } },
+      { "<leader>t", group = "test",     icon = { icon = "󰙨 ", hl = "WhichKeyIconGreen" } },
+      { "<leader>x", group = "trouble",  icon = { icon = "󱍼 ", hl = "WhichKeyIconRed" } },
 
       -- Hidden keymaps
       { "<leader><C-h>", ":leftabove vsplit<CR>", hidden = true },
