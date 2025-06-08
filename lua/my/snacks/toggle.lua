@@ -36,24 +36,6 @@ local function snacks_toggle_autoformat(opts)
   })
 end
 
-local function snacks_toggle_render_markdown()
-  return require("snacks.toggle").new({
-    id = "render-markdown-mode",
-    name = "Render Markdown Mode",
-    ft = { "markdown", "avante" },
-    get = function()
-      return require("render-markdown.state").get(require("render-markdown.lib.env").buf.current()).enabled
-    end,
-    set = function(value)
-      if value then
-        require("render-markdown").buf_enable()
-      else
-        require("render-markdown").buf_disable()
-      end
-    end,
-  })
-end
-
 return {
   is_autoformat_enabled = is_autoformat_enabled,
 
@@ -70,7 +52,6 @@ return {
     snacks_toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
     snacks_toggle.inlay_hints():map("<leader>oy")
     snacks_toggle.zoom():map("<leader>oz")
-    snacks_toggle_render_markdown():map("<leader>oM")
     snacks_toggle_autoformat({ global = false }):map("<leader>oq")
     snacks_toggle_autoformat({ global = true }):map("<leader>oQ")
   end,
