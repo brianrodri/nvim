@@ -1,5 +1,3 @@
-local my_lualine = require("my.lualine")
-
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -16,7 +14,7 @@ return {
       lualine_c = { "filename" },
       lualine_x = { "filetype" },
       lualine_y = { "location" },
-      lualine_z = { { "lsp_status", ignore_lsp = my_lualine.ignore_lsp } },
+      lualine_z = { { "lsp_status", ignore_lsp = { "copilot" } } },
     },
   },
   opts_extend = {
