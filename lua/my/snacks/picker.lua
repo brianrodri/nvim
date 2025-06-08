@@ -4,17 +4,7 @@ local my_vault = require("my.vault")
 return {
   ---@module "snacks"
   ---@type snacks.picker.Config
-  config = {
-    enabled = true,
-    win = {
-      input = {
-        keys = {
-          -- Close picker on ESC immediately, rather than needing a second press after entering normal mode.
-          ["<esc>"] = { "close", mode = { "n", "i" } },
-        },
-      },
-    },
-  },
+  config = { enabled = true },
 
   -- stylua: ignore
   -- luacheck: no max line length
