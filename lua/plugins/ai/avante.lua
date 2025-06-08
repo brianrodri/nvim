@@ -26,16 +26,4 @@ return {
     opts = { file_types = { "Avante" } },
     opts_extend = { "file_types" },
   },
-
-  {
-    "saghen/blink.cmp",
-    dependencies = { "Kaiser-Yang/blink-cmp-avante" },
-    opts = {
-      sources = {
-        default = { "avante" },
-        providers = { avante = { module = "blink-cmp-avante", name = "Avante" } },
-      },
-    },
-    opts_extend = { "sources.default" },
-  },
 }
