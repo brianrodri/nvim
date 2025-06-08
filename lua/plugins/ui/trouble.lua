@@ -16,9 +16,9 @@ return {
       lsp_base = {
         params = { include_current = true },
       },
-      my_lsp_document_symbols = {
+      lsp_document_symbols = {
         mode = "lsp_document_symbols",
-        win = { position = "right", size = 80, minimal = true },
+        win = { position = "right", size = 112, minimal = true },
       },
     },
   },

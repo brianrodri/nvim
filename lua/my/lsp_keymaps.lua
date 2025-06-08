@@ -8,7 +8,7 @@ return {
   { "<leader>cD", function() require("trouble").toggle("lsp_implementations") end, desc = "Implementations" },
   { "<leader>cy", function() require("trouble").toggle("lsp_definitions") end, desc = "Definitions" },
   { "<leader>cY", function() require("trouble").toggle("lsp_type_definitions") end, desc = "Type Definitions" },
-  { "<leader>cs", function() require("trouble").toggle("my_lsp_document_symbols") end, desc = "Document Symbols" },
+  { "<leader>cs", function() require("trouble").toggle("lsp_document_symbols") end, desc = "Document Symbols" },
   { "<leader>cj", function() require("trouble").toggle("lsp_incoming_calls") end, desc = "Incoming Calls" },
   { "<leader>ck", function() require("trouble").toggle("lsp_outgoing_calls") end, desc = "Outgoing Calls" },
 }
