@@ -1,5 +1,3 @@
-local my_trouble = require("my.trouble")
-
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -26,11 +24,10 @@ return {
   -- luacheck: no max line length
   ---@diagnostic disable: missing-fields
   keys = {
-    { "<leader>xx", function() require("trouble").toggle({ mode = "diagnostics" }) end, desc = "Diagnostics" },
-    { "<leader>xt", function() require("trouble").toggle({ mode = "todo", filter = my_trouble.todo_filter }) end, desc = "Todo Comments" },
-    { "<leader>xT", function() require("trouble").toggle({ mode = "todo" }) end, desc = "All Comments" },
-    { "<leader>xq", function() require("trouble").toggle({ mode = "qflist" }) end, desc = "QuickFix List" },
-    { "<leader>xl", function() require("trouble").toggle({ mode = "loclist" }) end, desc = "Location List" },
+    { "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Diagnostics (buffer)" },
+    { "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (workspace)" },
+    { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List" },
+    { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "Location List" },
     { "<leader>xm", "<cmd>NoiceAll<cr>", desc = "Message List" },
     { "<leader>xc", "<cmd>NoiceDismiss<cr>", desc = "Clear Messages" },
   },

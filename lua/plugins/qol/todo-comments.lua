@@ -16,4 +16,11 @@ return {
     highlight = { pattern = { [[.*<(KEYWORDS):]], [[.*<(KEYWORDS)\(.*\):]] } },
     search = { pattern = "\\s(KEYWORDS)[:\\(]" },
   },
+  -- stylua: ignore
+  -- luacheck: no max line length
+  keys = {
+    { "<leader>xt", "<cmd>Trouble todo toggle filter = { tag = { DANGER, BUG, PERF, TODO } }<cr>", desc = "Todo (danger/bug/perf/todo)" },
+    { "<leader>xT", "<cmd>Trouble todo toggle<cr>", desc = "Todo (all)" },
+  }
+,
 }
