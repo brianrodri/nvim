@@ -26,7 +26,7 @@ return {
       input = my_snacks_input.config,
       lazygit = { enabled = true },
       notifier = { enabled = true },
-      picker = my_snacks_picker.config,
+      picker = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },

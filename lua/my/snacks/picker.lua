@@ -2,10 +2,6 @@ local my_env = require("my.env")
 local my_vault = require("my.vault")
 
 return {
-  ---@module "snacks"
-  ---@type snacks.picker.Config
-  config = { enabled = true },
-
   -- stylua: ignore
   -- luacheck: no max line length
   ---@module "which-key"
