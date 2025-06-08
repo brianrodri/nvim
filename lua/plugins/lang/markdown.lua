@@ -21,6 +21,7 @@ return {
     ---@module "render-markdown"
     ---@type render.md.UserConfig
     opts = {
+      file_types = { "markdown", "markdown_inline" },
       preset = "obsidian",
       bullet = { icons = { "󰍴 " }, right_pad = 0, highlight = "@comment" },
       -- TODO: Dedupe these settings using `my.todo_comments`.
@@ -65,6 +66,7 @@ return {
         right_pad = 0,
       },
     },
+    opts_extend = { "file_types" },
   },
 
   {
