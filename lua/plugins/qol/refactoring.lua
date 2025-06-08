@@ -21,10 +21,4 @@ return {
     ---@type refactor.ConfigOpts
     opts = { show_success_message = true },
   },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "ThePrimeagen/refactoring.nvim" },
-    opts = { extensions = { refactoring = {} } },
-  },
 }

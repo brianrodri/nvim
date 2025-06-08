@@ -15,13 +15,4 @@ return {
     },
     opts_extend = { "patterns" },
   },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "brianrodri/projects.nvim" },
-    opts = { extensions = { projects = {} } },
-    keys = {
-      { "<leader>pr", function() require("project_nvim").get_recent_projects() end, desc = "Recent Projects" },
-    },
-  },
 }
