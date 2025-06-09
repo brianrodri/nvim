@@ -1,5 +1,4 @@
 local my_snacks_dashboard = require("my.snacks.dashboard")
-local my_snacks_picker = require("my.snacks.picker")
 local my_snacks_toggle = require("my.snacks.toggle")
 
 ---@module "lazy"
@@ -25,7 +24,6 @@ return {
       input = { enabled = true },
       lazygit = { enabled = true },
       notifier = { enabled = true },
-      picker = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },
@@ -37,7 +35,6 @@ return {
     init = function()
       require("snacks.util").set_hl(my_snacks_dashboard.highlight_groups)
       my_snacks_toggle.setup_keymaps()
-      require("which-key").add(my_snacks_picker.keymaps)
     end,
   },
 }
