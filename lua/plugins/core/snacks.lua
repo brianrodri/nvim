@@ -1,5 +1,3 @@
-local my_snacks_toggle = require("my.snacks.toggle")
-
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -21,8 +19,6 @@ return {
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
-      toggle = { enabled = true },
     },
-    init = function() my_snacks_toggle.setup_keymaps() end,
   },
 }
