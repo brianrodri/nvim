@@ -20,7 +20,7 @@ return {
   lazy = false,
   opts = {
     mappings = { go_in = "", go_out = "", reset = "<esc>" },
-    windows = { preview = true },
+    windows = { preview = true, width_preview = 80 },
   },
   keys = {
     { "-", function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end, { desc = "Open Directory" } },
