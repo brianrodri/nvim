@@ -1,4 +1,4 @@
-local my_vault = require("my.vault")
+local my_env = require("my.env")
 
 ---@module "lazy"
 ---@type LazySpec
@@ -10,7 +10,7 @@ return {
     ---@module "copilot"
     ---@type CopilotConfig|{}
     opts = {
-      workspace_folders = { my_vault.root_dir },
+      workspace_folders = { my_env.personal_vault.root_dir },
       ---@type SuggestionConfig|{}
       suggestion = { enabled = false },
       ---@type PanelConfig|{}

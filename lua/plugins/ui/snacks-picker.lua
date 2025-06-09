@@ -1,5 +1,4 @@
 local my_env = require("my.env")
-local my_vault = require("my.vault")
 
 ---@module "lazy"
 ---@type LazySpec
@@ -59,7 +58,7 @@ return {
       { "<leader>sq", function() require("snacks.picker").qflist() end,                                                            desc = "Quickfix List"       },
       { "<leader>ss", function() require("snacks.picker").spelling() end,                                                          desc = "Spell Check"         },
       { "<leader>su", function() require("snacks.picker").undo() end,                                                              desc = "Undo Tree"           },
-      { "<leader>sv", function() require("snacks.picker").files({ dirs = { my_vault.root_dir } }) end,                             desc = "Obsidian Vault"      },
+      { "<leader>sv", function() require("snacks.picker").files({ dirs = { my_env.personal_vault.root_dir } }) end,                desc = "Obsidian Vault"      },
     },
   },
 }
