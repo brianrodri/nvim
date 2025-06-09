@@ -53,24 +53,6 @@ return {
     },
   },
 
-  { -- A Git wrapper so good it should be illegal.
-    "tpope/vim-fugitive",
-    keys = {
-      { "<leader>gc", "<cmd>Git commit<cr>", desc = "Commit" },
-      { "<leader>gp", "<cmd>Git push<cr>", desc = "Push" },
-      { "<leader>gl", "<cmd>Git pull<cr>", desc = "Pull" },
-      { "<leader>gs", "<cmd>Git<cr>", desc = "Pull" },
-    },
-  },
-
-  {
-    "brianrodri/projects.nvim",
-    ---@module "project_nvim"
-    ---@type ProjectOptions
-    opts = { patterns = { ".git" } },
-    opts_extend = { "patterns" },
-  },
-
   {
     "nvim-lualine/lualine.nvim",
     opts = { sections = { lualine_c = { "b:gitsigns_head", gitsigns_status_lualine_section } } },

@@ -28,12 +28,4 @@ return {
       { "<leader>nO", function() my_vault.actions.open_note_in_append_mode(my_vault.inbox_note, "- ") end, desc = "Append To Inbox" },
     },
   },
-
-  {
-    "brianrodri/projects.nvim",
-    ---@module "project_nvim"
-    ---@type ProjectOptions|{}
-    opts = { patterns = { ".obsidian" } },
-    opts_extend = { "patterns" },
-  },
 }
