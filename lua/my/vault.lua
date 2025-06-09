@@ -8,7 +8,6 @@ local ATTACHMENTS_DIR = vim.fs.joinpath("8 - Meta", "Attachments")
 
 return {
   root_dir = ROOT_DIR,
-  inbox_note = INBOX_NOTE,
 
   actions = {
     ---@param note_path string
@@ -70,4 +69,5 @@ return {
       daily_notes = { folder = DAILY_NOTES_DIR, template = "Daily Template.md", workdays_only = false },
     },
   },
+  inbox_note_path = vim.fs.joinpath("0 - Index", "Inbox.md"),
 }

@@ -38,7 +38,7 @@ return {
       -- luacheck: no max line length
       keys = {
         { icon = "󰝒 ", key = "n", desc = "New File",     action = ":enew" },
-        { icon = "󰺿 ", key = "o", desc = "Open Inbox",   action = function() my_vault.actions.open_note(my_vault.inbox_note) end },
+        { icon = "󰺿 ", key = "o", desc = "Open Inbox",   action = function() my_vault.actions.open_note(my_vault.inbox_note_path) end },
         { icon = "a ", key = "p", desc = "Open Project", action = function() require("snacks.dashboard").pick("projects", { matcher = { cwd_bonus = true } }) end },
         { icon = "󱎸 ", key = "/", desc = "Grep",         action = function() require("snacks.dashboard").pick("live_grep") end },
         { icon = "󰱼 ", key = "f", desc = "Find File",    action = function() require("snacks.dashboard").pick("files") end },
