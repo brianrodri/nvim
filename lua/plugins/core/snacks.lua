@@ -1,4 +1,3 @@
-local my_snacks_dashboard = require("my.snacks.dashboard")
 local my_snacks_toggle = require("my.snacks.toggle")
 
 ---@module "lazy"
@@ -30,11 +29,7 @@ return {
       statuscolumn = { enabled = true },
       words = { enabled = true },
       toggle = { enabled = true },
-      dashboard = my_snacks_dashboard.config,
     },
-    init = function()
-      require("snacks.util").set_hl(my_snacks_dashboard.highlight_groups)
-      my_snacks_toggle.setup_keymaps()
-    end,
+    init = function() my_snacks_toggle.setup_keymaps() end,
   },
 }
