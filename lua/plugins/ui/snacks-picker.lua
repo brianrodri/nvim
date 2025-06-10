@@ -9,9 +9,11 @@ return {
     ---@type snacks.Config
     opts = {
       picker = {
+        show_empty = true,
+        matcher = { sort_empty = true, history_bonus = true },
         layout = {
           preset = "ivy",
-          -- TIP: This is: `1 - (1 / GOLDEN_RATIO)`
+          -- INFO: This is: `1 - (1 / GOLDEN_RATIO)`
           layout = { height = 0.38196601 },
         },
       },
