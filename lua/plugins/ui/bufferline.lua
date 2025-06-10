@@ -2,15 +2,15 @@
 ---@type LazySpec
 return {
   "akinsho/bufferline.nvim",
+  dependencies = { "folke/snacks.nvim" },
   ---@module "bufferline"
   ---@type bufferline.UserConfig
   opts = {
     options = {
       diagnostics = "nvim_lsp",
-      separator_style = "slope",
       diagnostics_update_on_event = true,
-      close_command = function(buf) require("snacks.bufdelete").delete({ buf = buf }) end,
-      right_mouse_command = function(buf) require("snacks.bufdelete").delete({ buf = buf }) end,
+      close_command = function(buf) require("snacks.bufdelete").delete({ buf = buf, wipe = true }) end,
+      right_mouse_command = function(buf) require("snacks.bufdelete").delete({ buf = buf, wipe = true }) end,
       always_show_bufferline = true,
     },
   },
