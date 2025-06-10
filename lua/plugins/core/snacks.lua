@@ -9,16 +9,20 @@ return {
     ---@module "snacks"
     ---@type snacks.Config
     opts = {
+      -- Disabled
+      explorer = { enabled = false },
+      -- Enabled
       bigfile = { enabled = true },
-      explorer = { enabled = false }, -- NOTE: because I prefer mini.files.
       input = { enabled = true },
-      lazygit = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+    },
+    keys = {
+      { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
     },
   },
 }

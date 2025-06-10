@@ -37,6 +37,10 @@ return {
         opts_extend = { "ensure_installed" },
       },
     },
+    keys = {
+      { "<leader>xm", "<cmd>NoiceAll<cr>", desc = "Message List" },
+      { "<leader>xc", "<cmd>NoiceDismiss<cr>", desc = "Clear Messages" },
+    },
   },
 
   {

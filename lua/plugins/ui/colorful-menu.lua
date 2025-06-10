@@ -1,8 +1,6 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  "xzbdmw/colorful-menu.nvim",
-
   {
     "saghen/blink.cmp",
     dependencies = { "xzbdmw/colorful-menu.nvim" },

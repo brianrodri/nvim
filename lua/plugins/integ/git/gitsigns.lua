@@ -1,4 +1,4 @@
-local gitsigns_status_lualine_section = {
+local gitsigns_diff = {
   "diff",
   source = function()
     local gitsigns = vim.b.gitsigns_status_dict
@@ -17,45 +17,27 @@ return {
       attach_to_untracked = true,
       watch_gitdir = { enable = true },
     },
+    -- stylua: ignore
+    -- luacheck: no max line length
     keys = {
       { "]g", function() require("gitsigns").nav_hunk("next") end, desc = "Jump To Next Hunk" },
       { "[g", function() require("gitsigns").nav_hunk("prev") end, desc = "Jump To Previous Hunk" },
-
       { "<leader>ga", function() require("gitsigns").stage_hunk() end, desc = "Stage Hunk" },
       { "<leader>gr", function() require("gitsigns").reset_hunk() end, desc = "Reset Hunk" },
       { "<leader>gA", function() require("gitsigns").stage_buffer() end, desc = "Stage Buffer" },
       { "<leader>gR", function() require("gitsigns").reset_buffer() end, desc = "Reset Buffer" },
       { "<leader>gK", function() require("gitsigns").preview_hunk() end, desc = "Preview Hunk" },
       { "<leader>gd", function() require("gitsigns").diffthis() end, desc = "Diff Against Index" },
-      {
-        "<leader>gD",
-        function() require("gitsigns").diffthis("main") end,
-        desc = "Diff Against Main",
-      },
-      {
-        "<leader>gb",
-        function() require("gitsigns").toggle_current_line_blame() end,
-        desc = "Toggle Blame",
-      },
-
-      {
-        "<leader>ga",
-        function() require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
-        desc = "Stage Hunk",
-        mode = "v",
-      },
-      {
-        "<leader>gr",
-        function() require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
-        desc = "Reset Hunk",
-        mode = "v",
-      },
+      { "<leader>gD", function() require("gitsigns").diffthis("main") end, desc = "Diff Against Main" },
+      { "<leader>gb", function() require("gitsigns").toggle_current_line_blame() end, desc = "Toggle Blame" },
+      { "<leader>ga", function() require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, desc = "Stage Hunk", mode = "v" },
+      { "<leader>gr", function() require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, desc = "Reset Hunk", mode = "v" },
     },
   },
 
   {
     "nvim-lualine/lualine.nvim",
-    opts = { sections = { lualine_c = { "b:gitsigns_head", gitsigns_status_lualine_section } } },
+    opts = { sections = { lualine_c = { "b:gitsigns_head", gitsigns_diff } } },
     opts_extend = { "sections.lualine_c" },
   },
 }

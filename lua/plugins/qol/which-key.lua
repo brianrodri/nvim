@@ -25,12 +25,6 @@ return {
       { "<leader>s", group = "search",   icon = { icon = "󱎸 ", color = "purple" } },
       { "<leader>t", group = "test",     icon = { icon = "󰙨 ", color = "green"  } },
       { "<leader>x", group = "trouble",  icon = { icon = "󱍼 ", color = "red"    } },
-
-      -- Hidden keymaps
-      { "<leader><C-h>", ":leftabove vsplit<CR>", hidden = true },
-      { "<leader><C-j>", ":rightbelow split<CR>", hidden = true },
-      { "<leader><C-k>", ":leftabove split<CR>", hidden = true },
-      { "<leader><C-l>", ":rightbelow vsplit<CR>", hidden = true },
     },
     keys = {
       scroll_down = "<c-n>",
