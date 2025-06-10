@@ -5,7 +5,9 @@ local Utils = require("my.utils")
 return {
   "nvim-treesitter/nvim-treesitter",
   main = "nvim-treesitter.configs",
+  ---@type TSConfig | { [string]: TSModule|{} }
   opts = {
+    ensure_installed = {},
     indent = { enable = true },
     highlight = { enable = true },
   },

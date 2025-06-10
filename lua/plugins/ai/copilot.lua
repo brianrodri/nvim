@@ -21,6 +21,8 @@ return {
   {
     "saghen/blink.cmp",
     dependencies = { "fang2hou/blink-copilot" },
+    ---@module "blink-cmp"
+    ---@type blink.cmp.Config
     opts = {
       sources = {
         default = { "copilot" },
