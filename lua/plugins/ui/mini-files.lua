@@ -35,11 +35,11 @@ return {
         pattern = "MiniFilesBufferCreate",
         callback = function(event)
           local buf_id = event.data.buf_id
-          local buf_keymap = function(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { desc = desc, buffer = buf_id }) end
-          buf_keymap("<C-l>", function() open_in_split("belowright vertical") end, "Open To Right")
-          buf_keymap("<C-j>", function() open_in_split("belowright horizontal") end, "Open To Bottom")
-          buf_keymap("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open To Top")
-          buf_keymap("<C-h>", function() open_in_split("aboveleft vertical") end, "Open To Left")
+          local map = function(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { desc = desc, buffer = buf_id }) end
+          map("<C-l>", function() open_in_split("belowright vertical") end, "Open To Right")
+          map("<C-j>", function() open_in_split("belowright horizontal") end, "Open To Bottom")
+          map("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open To Top")
+          map("<C-h>", function() open_in_split("aboveleft vertical") end, "Open To Left")
         end,
       })
       vim.api.nvim_create_autocmd("User", {
