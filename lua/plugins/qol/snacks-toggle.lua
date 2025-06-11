@@ -1,8 +1,9 @@
+local my_opts = require("my.opts")
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "LazyDone",
   once = true,
   callback = function()
-    local my_opts = require("my.opts")
     my_opts.new_autoformat_snacks_toggle({ global = false }):map("<leader>oq")
     my_opts.new_autoformat_snacks_toggle({ global = true }):map("<leader>oQ")
     local snacks_toggle = require("snacks.toggle")

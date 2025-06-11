@@ -3,9 +3,9 @@
 return {
   {
     "folke/snacks.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     priority = 1000,
     lazy = false,
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     ---@module "snacks"
     ---@type snacks.Config
     opts = {

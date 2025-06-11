@@ -20,29 +20,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
 ---@module "lazy"
 ---@type LazySpec
 return {
-  "folke/trouble.nvim",
-  cmd = "Trouble",
-  ---@type trouble.Config|{}
-  opts = {
-    focus = true,
-    follow = false,
-    warn_no_results = false,
-    open_no_results = true,
-    restore = false,
-    modes = {
-      lsp_base = {
-        params = { include_current = true },
-      },
-      lsp_document_symbols = {
-        mode = "lsp_document_symbols",
-        win = { position = "right", size = 112, minimal = true },
+  {
+    "folke/trouble.nvim",
+    cmd = "Trouble",
+    ---@type trouble.Config|{}
+    opts = {
+      focus = true,
+      follow = false,
+      warn_no_results = false,
+      open_no_results = true,
+      restore = false,
+      modes = {
+        lsp_base = {
+          params = { include_current = true },
+        },
+        lsp_document_symbols = {
+          mode = "lsp_document_symbols",
+          win = { position = "right", size = 112, minimal = true },
+        },
       },
     },
-  },
-  keys = {
-    { "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Diagnostics (buffer)" },
-    { "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (workspace)" },
-    { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List" },
-    { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "Location List" },
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Diagnostics (buffer)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (workspace)" },
+      { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List" },
+      { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "Location List" },
+    },
   },
 }
