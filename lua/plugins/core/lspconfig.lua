@@ -3,7 +3,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    ---@param opts my.types.LspConfig
+    ---@param opts my.types.LspConfig|?
     config = function(_, opts)
       for name, config in pairs(opts or {}) do
         if config then vim.lsp.enable(name, true) end

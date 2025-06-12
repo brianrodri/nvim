@@ -13,8 +13,10 @@ return {
       indent = { enable = true },
       highlight = { enable = true },
     },
+    ---@param opts TSConfig|?
     config = function(_, opts)
-      opts.ensure_installed = my_utils.dedupe(opts.ensure_installed)
+      opts = opts or {}
+      opts.ensure_installed = my_utils.dedupe(opts.ensure_installed --[[@as table<string>]] or {})
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
