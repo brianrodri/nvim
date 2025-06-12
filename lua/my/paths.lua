@@ -1,7 +1,7 @@
 local M = {}
 
----@param base_path string  Resolved by composing |vim.fs.normalize()| with |uv.fs_realpath()|.
----@param ... string        Concatenated to the **resolved path** with |vim.fs.joinpath|.
+---@param base_path string  Resolved by composing |uv.fs_realpath()| with |vim.fs.normalize()|.
+---@param ... string        Combined with the resolved path using |vim.fs.joinpath()|.
 ---@return string resolved_path
 function M.resolve(base_path, ...)
   local has_wsl = vim.fn.has("wsl") == 1
@@ -10,7 +10,6 @@ function M.resolve(base_path, ...)
 end
 
 M.nvim_config_dir = M.resolve(vim.fn.stdpath("config"))
-M.nvim_config_plugins_dir = M.resolve(M.nvim_config_dir, "lua", "plugins")
 M.dot_config_dir = M.resolve("~/Repositories/config")
 M.lazy_plugins_dir = M.resolve(vim.fn.stdpath("data"), "lazy")
 
