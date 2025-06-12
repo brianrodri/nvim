@@ -4,7 +4,7 @@ return {
   {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
-    ---@param opts my.LintOpts
+    ---@param opts my.types.LintOpts
     config = function(_, opts)
       -- Configure the linters.
       require("lint").linters_by_ft = opts and opts.linters_by_ft or {}

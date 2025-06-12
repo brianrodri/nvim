@@ -3,7 +3,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    ---@type my.LspConfig
+    ---@type my.types.LspConfig
     opts = {
       markdown_oxide = {
         root_markers = { ".obsidian" },

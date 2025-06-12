@@ -3,7 +3,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    ---@type my.TSConfig
+    ---@type my.types.TSConfig
     opts = { ensure_installed = { "rust", "ron" } },
     opts_extend = { "ensure_installed" },
   },

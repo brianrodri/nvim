@@ -3,7 +3,7 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    ---@type my.LintOpts
+    ---@type my.types.LintOpts
     opts = { linters_by_ft = { lua = { "luacheck" } } },
   },
 }

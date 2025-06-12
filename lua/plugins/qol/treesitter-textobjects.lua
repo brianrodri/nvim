@@ -4,7 +4,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-    ---@type my.TSConfig
+    ---@type my.types.TSConfig
     opts = {
       textobjects = {
         select = {
