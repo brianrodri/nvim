@@ -1,4 +1,4 @@
-local my_env = require("my.env")
+local my_paths = require("my.paths")
 
 local Utils = {}
 
@@ -10,7 +10,7 @@ end
 
 ---@param path string
 local function get_import_basename(path)
-  return vim.startswith(path, my_env.nvim_config_plugins_dir) and vim.fs.basename(path) or nil
+  return vim.startswith(path, my_paths.nvim_config_plugins_dir) and vim.fs.basename(path) or nil
 end
 
 --- Returns `LazySpec` objects for each folder in the current script's directory.
