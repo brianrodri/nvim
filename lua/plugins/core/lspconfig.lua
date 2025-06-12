@@ -12,5 +12,3 @@ return {
     end,
   },
 }
-
----@class my.LspConfig: { [string]: vim.lsp.Config }

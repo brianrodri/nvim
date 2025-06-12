@@ -23,6 +23,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = "Trouble",
+    ---@module "trouble"
     ---@type trouble.Config|{}
     opts = {
       focus = true,

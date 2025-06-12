@@ -11,8 +11,10 @@ return {
     ---@type CopilotConfig|{}
     opts = {
       workspace_folders = { my_env.personal_vault.root_dir },
+      ---@module "copilot"
       ---@type SuggestionConfig|{}
       suggestion = { enabled = false },
+      ---@module "copilot"
       ---@type PanelConfig|{}
       panel = { enabled = false },
     },

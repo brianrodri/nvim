@@ -7,7 +7,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     main = "nvim-treesitter.configs",
-    ---@type TSConfig | { [string]: TSModule|{} }
+    ---@type my.TSConfig
     opts = {
       ensure_installed = {},
       indent = { enable = true },

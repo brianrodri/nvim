@@ -9,12 +9,21 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-    ---@param opts neotest.Config
+    ---@module "neotest"
+    ---@param opts neotest.Config|?
     config = function(_, opts)
       opts = opts or {}
       opts.adapters = vim
         .iter(pairs(opts.adapters or {}))
-        :map(function(name, cfg) return vim.tbl_isempty(cfg or {}) and require(name) or require(name)(cfg) end)
+        :map(function(adapter_key, adapter_value)
+          if type(adapter_key) == "number" then
+            return adapter_value
+          elseif vim.tbl_isempty(adapter_value or {}) then
+            return require(adapter_key)
+          else
+            return require(adapter_key)(adapter_value)
+          end
+        end)
         :totable()
       require("neotest").setup(opts)
     end,

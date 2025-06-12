@@ -7,7 +7,7 @@ return {
     ---@param opts my.LintOpts
     config = function(_, opts)
       -- Configure the linters.
-      require("lint").linters_by_ft = vim.tbl_get(opts or {}, "linters_by_ft") or {}
+      require("lint").linters_by_ft = opts and opts.linters_by_ft or {}
       -- Setup automatic linting for buffers.
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = vim.api.nvim_create_augroup("my.lint.autocmd", { clear = true }),
@@ -19,6 +19,3 @@ return {
     end,
   },
 }
-
----@class my.LintOpts
----@field linters_by_ft { [string]: string[] }

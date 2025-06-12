@@ -16,7 +16,7 @@ end
 --- Returns `LazySpec` objects for each folder in the current script's directory.
 ---
 ---@module "lazy"
----@return LazySpec
+---@return LazySpec[]
 function Utils.flatten_submodule_plugins()
   local script_path = assert(vim.uv.fs_realpath(get_script_path_from_execution_stack(2)))
   local module_path = vim.fn.reverse(vim.iter(vim.fs.parents(script_path)):map(get_import_basename):totable())

@@ -3,6 +3,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    ---@type my.TSConfig
     opts = { ensure_installed = { "json" } },
     opts_extend = { "ensure_installed" },
   },
