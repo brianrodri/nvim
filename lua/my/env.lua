@@ -4,10 +4,12 @@ local nvim_config = assert(vim.uv.fs_realpath(vim.fn.stdpath("config")))
 local dot_configs = assert(vim.uv.fs_realpath(vim.fs.normalize("~/Repositories/config", { win = WSL_MODE })))
 local lazy_plugins = assert(vim.uv.fs_realpath(vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")))
 local nvim_config_plugins = assert(vim.uv.fs_realpath(vim.fs.joinpath(nvim_config, "lua", "plugins")))
+local nvim_lazy_plugins_dir = assert(vim.uv.fs_realpath(vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")))
 
 return {
   nvim_config_dir = nvim_config,
   nvim_config_plugins_dir = nvim_config_plugins,
+  nvim_lazy_plugins_dir = nvim_lazy_plugins_dir,
   dot_config_dir = dot_configs,
   lazy_plugins_dir = lazy_plugins,
 

@@ -30,6 +30,7 @@ return {
       { "<leader>fF", function() require("snacks.picker").files({ root = false }) end,                                             desc = "Files (cwd)"         },
       { "<leader>fg", function() require("snacks.picker").git_status() end,                                                        desc = "Files (git status)"  },
       { "<leader>fG", function() require("snacks.picker").git_files() end,                                                         desc = "Files (git)"         },
+      { "<leader>fl", function() require("snacks.picker").lazy({ dirs = { my_env.nvim_lazy_plugins_dir } }) end,                   desc = "Lazy Plugin Files"   },
       { "<leader>fn", function() require("snacks.picker").notifications() end,                                                     desc = "Notifications"       },
       { "<leader>fp", function() require("snacks.picker").projects() end,                                                          desc = "Projects"            },
       { "<leader>fr", function() require("snacks.picker").recent() end,                                                            desc = "Recent Files"        },
@@ -39,7 +40,6 @@ return {
       { "<leader>sB", function() require("snacks.picker").grep_buffers() end,                                                      desc = "Grep All Buffers"    },
       { "<leader>sg", function() require("snacks.picker").grep() end,                                                              desc = "Grep (Root Dir)"     },
       { "<leader>sG", function() require("snacks.picker").grep({ root = false }) end,                                              desc = "Grep (cwd)"          },
-      { "<leader>sp", function() require("snacks.picker").lazy() end,                                                              desc = "Plugin Specs"        },
       -- search
       { '<leader>s"', function() require("snacks.picker").registers() end,                                                         desc = "Registers"           },
       { "<leader>s.", function() require("snacks.picker").resume() end,                                                            desc = "Resume"              },
