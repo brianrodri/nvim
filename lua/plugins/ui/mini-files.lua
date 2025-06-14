@@ -20,6 +20,7 @@ return {
     "echasnovski/mini.files",
     lazy = false,
     opts = {
+      content = { filter = function() return true end },
       mappings = { go_in = "", go_out = "", reset = "<esc>" },
       windows = { preview = true, width_preview = 80 },
     },
