@@ -38,7 +38,7 @@ return {
       { "<leader>sB", function() require("snacks.picker").grep_buffers() end,                                         desc = "Grep All Buffers"       },
       { "<leader>sg", function() require("snacks.picker").grep() end,                                                 desc = "Grep (Root Dir)"        },
       { "<leader>sG", function() require("snacks.picker").grep({ root = false }) end,                                 desc = "Grep (cwd)"             },
-      { "<leader>sp", function() require("snacks.picker").lazy() end,                                                 desc = "Plugin Specs"           },
+      { "<leader>sp", function() require("snacks.picker").files({ dirs = { my_paths.lazy_plugins_dir } }) end,        desc = "Plugin Files (lazy)"    },
       -- search
       { '<leader>s"', function() require("snacks.picker").registers() end,                                            desc = "Registers"              },
       { "<leader>s.", function() require("snacks.picker").resume() end,                                               desc = "Resume"                 },
