@@ -5,6 +5,6 @@ return {
     "stevearc/conform.nvim",
     ---@module "conform"
     ---@type conform.setupOpts
-    opts = { formatters_by_ft = { markdown = { "prettier" } } },
+    opts = { formatters_by_ft = { markdown = { "mdformat" } } },
   },
 }
