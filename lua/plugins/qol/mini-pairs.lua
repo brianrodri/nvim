@@ -15,10 +15,6 @@ return {
       skip_unbalanced = true,
       -- better deal with markdown code blocks
       markdown = true,
-      mappings = {
-        ["<"] = { action = "open", pair = "<>", neigh_pattern = "[^\\]." },
-        [">"] = { action = "close", pair = "<>", neigh_pattern = "[^\\]." },
-      },
     },
   },
 }
