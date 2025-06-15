@@ -2,21 +2,13 @@
 ---@type LazySpec
 return {
   {
-    "v1nh1shungry/cppman.nvim",
-    cmd = "Cppman",
-    dependencies = { "folke/snacks.nvim" },
-    ft = { "c", "cpp" },
+    "madskjeldgaard/cppman.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "folke/snacks.nvim" },
     ---@module "cppman"
-    ---@type cppman.Config
-    opts = {
-      picker = "snacks",
-      win = {
-        split = "below",
-        style = "minimal",
-      },
-    },
+    ---@type cppman.Config|{}
+    opts = { picker = "snacks" },
     keys = {
-      { "<leader>c?", function() require("cppman").search() end, desc = "Search C++ Reference", ft = { "c", "cpp" } },
+      { "<leader>c?", function() require("cppman").search() end, "Search Docs (cppman)" },
     },
   },
 }
