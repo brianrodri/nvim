@@ -26,7 +26,7 @@
   "neotest-vitest": { "branch": "main", "commit": "a6099e1fb55a2c2851da3dd0f4d510af9a234c92" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
-  "nvim-colorizer.lua": { "branch": "master", "commit": "517df88cf2afb36652830df2c655df2da416a0ae" },
+  "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
   "nvim-dap": { "branch": "master", "commit": "40a8189b8a57664a1850b0823fdcb3ac95b9f635" },
   "nvim-dap-ui": { "branch": "master", "commit": "73a26abf4941aa27da59820fd6b028ebcdbcf932" },
   "nvim-lint": { "branch": "master", "commit": "2b0039b8be9583704591a13129c600891ac2c596" },
