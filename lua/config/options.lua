@@ -55,3 +55,6 @@ vim.o.colorcolumn = "+1"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 99
+
+-- https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
+vim.g.python3_host_prog = "~/.pyenv/versions/py3nvim/bin/python"
