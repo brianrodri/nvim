@@ -1,3 +1,12 @@
+vim.api.nvim_create_autocmd("User", {
+  group = vim.api.nvim_create_augroup("my.render-markdown.highlights", { clear = true }),
+  pattern = "LazyDone",
+  callback = function()
+    vim.api.nvim_set_hl(0, "my.todo.obsolete", { ctermfg = 245, fg = "#859289", strikethrough = true, force = true })
+    vim.api.nvim_set_hl(0, "my.todo.done", { ctermfg = 142, fg = "#A7C080", strikethrough = true, force = true })
+  end,
+})
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -39,35 +48,36 @@ return {
         error     = { raw = "[!ERROR]",     rendered = "󱐌 Error",     highlight = "RenderMarkdownError",   category = "obsidian" },
         bug       = { raw = "[!BUG]",       rendered = "󰨰 Bug",       highlight = "RenderMarkdownError",   category = "obsidian" },
         example   = { raw = "[!EXAMPLE]",   rendered = "󰉹 Example",   highlight = "Purple",                category = "obsidian" },
-        quote     = { raw = "[!QUOTE]",     rendered = "󱆨 Quote",     highlight = "RenderMarkdownQuote",   category = "obsidian" },
-        cite      = { raw = "[!CITE]",      rendered = "󱆨 Cite",      highlight = "RenderMarkdownQuote",   category = "obsidian" },
+        quote     = { raw = "[!QUOTE]",     rendered = "󱆨 Quote",     highlight = "markdownBlockquote",    category = "obsidian" },
+        cite      = { raw = "[!CITE]",      rendered = "󱆨 Cite",      highlight = "markdownBlockquote",    category = "obsidian" },
       },
       -- stylua: ignore
       -- luacheck: no max line length
       checkbox = {
-        checked = { icon = "󰱒 ", highlight = "@text.todo.checked", scope_highlight = "@markup.strikethrough" },
-        unchecked = { icon = "󰄱 ", highlight = "@text.todo.unchecked" },
+        checked = { icon = "󰱒 ", highlight = "RenderMarkdownHint", scope_highlight = "my.todo.obsolete" },
+        unchecked = { icon = "󰄱 " },
         custom = {
-          incomplete  = { raw = "[/]", rendered = "󰤌 ", highlight = "Green" },
-          todo        = { raw = "[-]", rendered = "󱋭 ", highlight = "Comment", scope_highlight = "@markup.strikethrough" },
-          forwarded   = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" },
-          scheduled   = { raw = "[<]", rendered = "󰃮 ", highlight = "Comment" },
-          question    = { raw = "[?]", rendered = "󰞋 ", highlight = "Yellow" },
-          important   = { raw = "[!]", rendered = "󰀦 ", highlight = "Orange" },
-          star        = { raw = "[*]", rendered = "󰓎 ", highlight = "Yellow" },
-          quote       = { raw = '["]', rendered = "󱀡 ", highlight = "Comment" },
-          location    = { raw = "[l]", rendered = "󰍎 ", highlight = "Red" },
-          bookmark    = { raw = "[b]", rendered = "󰃀 ", highlight = "Orange" },
-          information = { raw = "[i]", rendered = "󰬐 ", highlight = "Blue" },
-          savings     = { raw = "[S]", rendered = "󰇁 ", highlight = "Green" },
-          idea        = { raw = "[I]", rendered = "󰛨 ", highlight = "Yellow" },
-          pros        = { raw = "[p]", rendered = "󰔓 ", highlight = "Green" },
-          cons        = { raw = "[c]", rendered = "󰔑 ", highlight = "Orange" },
-          fire        = { raw = "[f]", rendered = "󰈸 ", highlight = "Red" },
-          key         = { raw = "[k]", rendered = "󰌆 ", highlight = "Yellow" },
-          win         = { raw = "[w]", rendered = "󰃫 ", highlight = "Purple" },
-          up          = { raw = "[u]", rendered = "󰔵 ", highlight = "Green" },
-          down        = { raw = "[d]", rendered = "󰔳 ", highlight = "Red" },
+          quote       = { raw = '["]', rendered = "󱀡 ", highlight = "RenderMarkdownMath"                                          },
+          todo        = { raw = "[-]", rendered = "󰄱 ", highlight = "my.todo.obsolete",      scope_highlight = "my.todo.obsolete" },
+          important   = { raw = "[!]", rendered = "󰀦 ", highlight = "@tag"                                                        },
+          question    = { raw = "[?]", rendered = "󰞋 ", highlight = "RenderMarkdownWarn"                                          },
+          star        = { raw = "[*]", rendered = "󰓎 ", highlight = "RenderMarkdownWarn"                                          },
+          incomplete  = { raw = "[/]", rendered = "󱂪 ", highlight = "RenderMarkdownHint"                                          },
+          scheduled   = { raw = "[<]", rendered = "󰃮 ", highlight = "markdownBlockquote"                                          },
+          forwarded   = { raw = "[>]", rendered = "󰒊 ", highlight = "markdownBlockquote"                                          },
+          bookmark    = { raw = "[b]", rendered = "󰃀 ", highlight = "@tag"                                                        },
+          cons        = { raw = "[c]", rendered = "󰔑 ", highlight = "@tag"                                                        },
+          down        = { raw = "[d]", rendered = "󰔳 ", highlight = "RenderMarkdownError"                                         },
+          fire        = { raw = "[f]", rendered = "󰈸 ", highlight = "RenderMarkdownError"                                         },
+          key         = { raw = "[k]", rendered = "󰌋 ", highlight = "RenderMarkdownWarn"                                          },
+          location    = { raw = "[l]", rendered = "󰍎 ", highlight = "RenderMarkdownError"                                         },
+          pros        = { raw = "[p]", rendered = "󰔓 ", highlight = "RenderMarkdownHint"                                          },
+          savings     = { raw = "[S]", rendered = " ", highlight = "RenderMarkdownHint"                                          },
+          up          = { raw = "[u]", rendered = "󰔵 ", highlight = "RenderMarkdownHint"                                          },
+          win         = { raw = "[w]", rendered = "󰃫 ", highlight = "Purple"                                                      },
+          -- TODO: render-markdown can't distingusih between these two.
+          information = { raw = "[i]", rendered = "󰋽 ", highlight = "RenderMarkdownInfo"                                          },
+          idea        = { raw = "[I]", rendered = "󰛨 ", highlight = "RenderMarkdownWarn"                                          },
         },
         right_pad = 0,
       },
