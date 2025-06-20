@@ -24,6 +24,13 @@ return {
     },
     ---@module "snacks"
     ---@type snacks.Config
-    opts = { image = { enabled = true } },
+    opts = {
+      image = {
+        enabled = true,
+        ---@module "snacks"
+        ---@type snacks.image.convert.Config|{}
+        convert = { notify = false },
+      },
+    },
   },
 }
