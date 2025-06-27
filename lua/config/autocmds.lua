@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
   desc = "Highlight when yanking text",
-  callback = function() vim.highlight.on_yank() end,
+  callback = vim.hl.on_yank,
 })
 
 -- Prefer LSP folding if client supports it
