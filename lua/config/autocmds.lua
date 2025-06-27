@@ -1,5 +1,5 @@
--- Close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "Close some filetypes with <q>",
   group = vim.api.nvim_create_augroup("close_with_q", { clear = true }),
   pattern = {
     "PlenaryTestPopup",
@@ -26,15 +26,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight the yanked text during a |TextYankPost| event.",
   group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-  desc = "Highlight when yanking text",
   callback = vim.hl.on_yank,
 })
 
--- Prefer LSP folding if client supports it
 vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "Use LSP folding when attached",
   group = vim.api.nvim_create_augroup("my.lsp.foldexpr", { clear = true }),
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
