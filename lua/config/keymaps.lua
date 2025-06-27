@@ -1,5 +1,5 @@
 -- Clear Search Highlighting
-vim.keymap.set("n", "<esc>", function() vim.cmd([[nohlsearch]]) end)
+vim.keymap.set("n", "<esc>", ":nohlsearch<cr>", { silent = true })
 
 -- Buffer controls
 vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
