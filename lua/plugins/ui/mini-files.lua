@@ -41,6 +41,7 @@ return {
           map("<C-j>", function() open_in_split("belowright horizontal") end, "Open To Bottom")
           map("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open To Top")
           map("<C-h>", function() open_in_split("aboveleft vertical") end, "Open To Left")
+          map("<C-c>", function() require("mini.files").close() end, "Close")
         end,
       })
       vim.api.nvim_create_autocmd("User", {
