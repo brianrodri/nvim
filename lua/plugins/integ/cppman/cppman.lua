@@ -6,7 +6,7 @@ return {
     cmd = "Cppman",
     dependencies = { "folke/snacks.nvim" },
     ---@module "cppman"
-    ---@type cppman.Config
+    ---@type cppman.Config|{}
     opts = { picker = "snacks" },
   },
 }
