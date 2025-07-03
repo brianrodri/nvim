@@ -18,6 +18,20 @@ vim.keymap.set("n", "<leader><C-j>", ":rightbelow split<CR>", { desc = "Split Bo
 vim.keymap.set("n", "<leader><C-k>", ":leftabove split<CR>", { desc = "Split Top" })
 vim.keymap.set("n", "<leader><C-l>", ":rightbelow vsplit<CR>", { desc = "Split Right" })
 
+-- Yank/paste to "clipboard" register
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>Y", '"+y$')
+vim.keymap.set("n", "<leader>Y", '"+y$')
+vim.keymap.set("v", "<leader>d", '"+d')
+vim.keymap.set("n", "<leader>d", '"+d')
+vim.keymap.set("v", "<leader>D", '"+D')
+vim.keymap.set("n", "<leader>D", '"+D')
+vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("v", "<leader>p", '"+p')
+vim.keymap.set("n", "<leader>P", '"+P')
+vim.keymap.set("v", "<leader>P", '"+P')
+
 -- Language-agnostic LSP keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("my.lsp.keymaps", { clear = true }),

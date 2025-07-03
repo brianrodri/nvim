@@ -3,6 +3,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.opt.clipboard = "unnamedplus" -- Use system clipboard
+
 -- Make line numbers default
 vim.opt.number = true
 
