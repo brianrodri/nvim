@@ -10,11 +10,13 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "LazyDone",
   once = true,
   callback = function()
-    local enabled = require("gitsigns.config").config.signcolumn
+    local config = require("gitsigns.config").config
     require("snacks.toggle")({
-      name = "GitSigns",
-      get = function() return enabled end,
-      set = function(value) enabled = require("gitsigns").toggle_signs(value) end,
+      name = "Git Status Column",
+      get = function() return config.signcolumn end,
+      set = function(value)
+        if config.signcolumn ~= value then require("gitsigns").toggle_signs(value) end
+      end,
     }):map("<leader>og")
   end,
 })
