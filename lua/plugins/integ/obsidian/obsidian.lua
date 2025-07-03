@@ -6,7 +6,7 @@ local function append_prompt_to_inbox()
     local client = require("obsidian").get_client()
     local inbox_note = client:resolve_note(my_paths.personal_vault.inbox_note_path)
     client:write_note(inbox_note, { update_content = function(lst) return vim.list_extend(lst, { text }) end })
-    local curr_note = client:current_note()
+    local curr_note = require("obsidian.api").current_note()
     if curr_note and curr_note.path == inbox_note.path then vim.schedule(function() vim.cmd("bufdo e") end) end
   end)
 end
@@ -56,12 +56,12 @@ return {
     -- stylua: ignore
     -- luacheck: no max line length
     keys = {
-      { "<leader>nn", function() require("obsidian").get_client():command("new", { args = "" }) end,             desc = "New Note (obsidian)"          },
-      { "<leader>nt", function() require("obsidian").get_client():command("today", { args = "" }) end,           desc = "Open Today's Note (obsidian)" },
-      { "<leader>ng", function() require("snacks.picker").grep({ cwd = my_paths.personal_vault.root_dir }) end,  desc = "Grep Notes (obsidian)"        },
-      { "<leader>nf", function() require("snacks.picker").files({ cwd = my_paths.personal_vault.root_dir }) end, desc = "Find Notes (obsidian)"        },
-      { "<leader>na", append_prompt_to_inbox,                                                                    desc = "Append To Inbox (obsidian)"   },
-      { "<leader>no", open_inbox,                                                                                desc = "Open Inbox (obsidian)"        },
+      { "<leader>nn", function() require("obsidian.commands.new")(require("obsidian").get_client(), { args = "" } --[[@as CommandArgs|{}]]) end,   desc = "New Note (obsidian)"          },
+      { "<leader>nt", function() require("obsidian.commands.today")(require("obsidian").get_client(), { args = "" } --[[@as CommandArgs|{}]]) end, desc = "Open Today's Note (obsidian)" },
+      { "<leader>ng", function() require("snacks.picker").grep({ cwd = my_paths.personal_vault.root_dir }) end,                                    desc = "Grep Notes (obsidian)"        },
+      { "<leader>nf", function() require("snacks.picker").files({ cwd = my_paths.personal_vault.root_dir }) end,                                   desc = "Find Notes (obsidian)"        },
+      { "<leader>na", append_prompt_to_inbox,                                                                                                      desc = "Append To Inbox (obsidian)"   },
+      { "<leader>no", open_inbox,                                                                                                                  desc = "Open Inbox (obsidian)"        },
     },
   },
 }
