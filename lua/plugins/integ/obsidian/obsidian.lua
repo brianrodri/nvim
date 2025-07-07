@@ -52,6 +52,8 @@ return {
       open = { use_advanced_uri = true },
       ---@type obsidian.config.CompletionOpts|{}
       completion = { blink = true },
+      -- https://github.com/obsidian-nvim/obsidian.nvim/wiki/Commands
+      legacy_commands = false,
     },
     -- stylua: ignore
     -- luacheck: no max line length
