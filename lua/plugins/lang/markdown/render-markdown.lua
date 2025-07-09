@@ -19,6 +19,9 @@ return {
       file_types = { "markdown", "markdown_inline" },
       preset = "obsidian",
       bullet = { icons = { "󰍴 " }, right_pad = 0, highlight = "@comment" },
+      heading = {
+        backgrounds = {},
+      },
       -- TODO: Dedupe these settings using `my.todo_comments`.
       -- stylua: ignore
       -- luacheck: no max line length
