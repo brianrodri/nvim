@@ -58,7 +58,7 @@ return {
             { icon = "󰝒 ", key = "n", desc = "New File",     action = ":enew" },
             { icon = "󱎸 ", key = "g", desc = "Grep",         action = function() require("snacks.dashboard").pick("live_grep") end },
             { icon = "󰱼 ", key = "f", desc = "Find File",    action = function() require("snacks.dashboard").pick("files") end },
-            { icon = "󱋡 ", key = "r", desc = "Recent File",  action = function() require("snacks.dashboard").pick("recent", { filter = { cwd = true } }) end },
+            { icon = "󱋡 ", key = "r", desc = "Recent File",  action = function() require("snacks.dashboard").pick("recent", { filter = { cwd = vim.uv.cwd() } }) end },
             { icon = "󱁻 ", key = "c", desc = "Config File",  action = function() require("snacks.dashboard").pick("files", { dirs = { my_paths.nvim_config_dir, my_paths.dot_config_dir } }) end },
             { icon = "󰙬 ", key = "p", desc = "Find Project", action = function() require("snacks.dashboard").pick("projects", { matcher = { cwd_bonus = true } }) end },
             { icon = " ", key = "G", desc = "Lazygit",      action = function() require("snacks").lazygit() end },
