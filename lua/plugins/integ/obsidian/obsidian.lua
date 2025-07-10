@@ -1,19 +1,10 @@
 local my_paths = require("my.paths")
+local my_utils = require("my.utils")
 
-local function append_prompt_to_inbox()
-  vim.ui.input({ prompt = "Append To Inbox", default = "- " }, function(text)
-    if vim.fn.empty(text) == 1 then return end
-    local client = require("obsidian").get_client()
-    local inbox_note = client:resolve_note(my_paths.personal_vault.inbox_note_path)
-    client:write_note(inbox_note, { update_content = function(lst) return vim.list_extend(lst, { text }) end })
-    local curr_note = require("obsidian.api").current_note()
-    if curr_note and curr_note.path == inbox_note.path then vim.schedule(function() vim.cmd("bufdo e") end) end
-  end)
-end
-
-local function open_inbox()
-  local client = require("obsidian").get_client()
-  client:open_note(client:resolve_note(my_paths.personal_vault.inbox_note_path), { sync = true })
+local function resolve_note_strict(query)
+  local note = require("obsidian").get_client():resolve_note(query)
+  assert(require("obsidian.note").is_note_obj(note), vim.inspect(query) .. " did not resolve to exactly one note")
+  return note
 end
 
 ---@module "lazy"
@@ -55,15 +46,41 @@ return {
       -- https://github.com/obsidian-nvim/obsidian.nvim/wiki/Commands
       legacy_commands = false,
     },
-    -- stylua: ignore
-    -- luacheck: no max line length
     keys = {
-      { "<leader>nn", function() require("obsidian.commands.new")(require("obsidian").get_client(), { args = "" } --[[@as CommandArgs|{}]]) end,   desc = "New Note (obsidian)"          },
-      { "<leader>nt", function() require("obsidian.commands.today")(require("obsidian").get_client(), { args = "" } --[[@as CommandArgs|{}]]) end, desc = "Open Today's Note (obsidian)" },
-      { "<leader>ng", function() require("snacks.picker").grep({ cwd = my_paths.personal_vault.root_dir }) end,                                    desc = "Grep Notes (obsidian)"        },
-      { "<leader>nf", function() require("snacks.picker").files({ cwd = my_paths.personal_vault.root_dir }) end,                                   desc = "Find Notes (obsidian)"        },
-      { "<leader>na", append_prompt_to_inbox,                                                                                                      desc = "Append To Inbox (obsidian)"   },
-      { "<leader>no", open_inbox,                                                                                                                  desc = "Open Inbox (obsidian)"        },
+      { "<leader>nn", ":Obsidian new<cr>", desc = "New Note (obsidian)", silent = true },
+      { "<leader>nt", ":Obsidian today<cr>", desc = "Open Today's Note (obsidian)", silent = true },
+      {
+        "<leader>ng",
+        function() require("snacks.picker").grep({ cwd = my_paths.personal_vault.root_dir }) end,
+        desc = "Grep Notes (obsidian)",
+      },
+      {
+        "<leader>nf",
+        function() require("snacks.picker").files({ cwd = my_paths.personal_vault.root_dir }) end,
+        desc = "Find Notes (obsidian)",
+      },
+      {
+        "<leader>nr",
+        function() require("snacks.picker").recent({ filter = { cwd = my_paths.personal_vault.root_dir } }) end,
+        desc = "Recent Notes (obsidian)",
+      },
+      {
+        "<leader>na",
+        function()
+          local note = resolve_note_strict(my_paths.personal_vault.inbox_note_path)
+          local text = my_utils.trimmed(require("obsidian.api").input("Append To Inbox", { default = "- " }))
+          if text then note:write({ update_content = function(lines) return vim.list_extend(lines, { text }) end }) end
+          if vim.fn.bufnr(note.path.filename) ~= -1 then vim.cmd.checktime(note.path.filename) end
+        end,
+        desc = "Append To Inbox (obsidian)",
+        silent = true,
+      },
+      {
+        "<leader>no",
+        function() resolve_note_strict(my_paths.personal_vault.inbox_note_path):open({ sync = true }) end,
+        desc = "Open Inbox (obsidian)",
+        silent = true,
+      },
     },
   },
 }
