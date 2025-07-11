@@ -1,11 +1,26 @@
 local my_paths = require("my.paths")
-local my_utils = require("my.utils")
 
+---@param query string A path, filename, note ID, alias, title, etc. that matches exactly one note.
 local function assert_note(query)
   local note = require("obsidian").get_client():resolve_note(query)
   assert(require("obsidian.note").is_note_obj(note), vim.inspect(query) .. " did not resolve to exactly one note")
   return note
 end
+
+---@module "obsidian"
+---@type obsidian.workspace.WorkspaceSpec
+local PERSONAL_WORKSPACE = {
+  name = "personal",
+  path = my_paths.personal_vault.root_dir,
+  ---@module "obsidian"
+  ---@type obsidian.config.ClientOpts|{}
+  overrides = {
+    notes_subdir = my_paths.personal_vault.fleeting_notes_dir,
+    new_notes_location = "notes_subdir",
+    daily_notes = { folder = my_paths.personal_vault.daily_notes_dir, workdays_only = false },
+    attachments = { img_folder = my_paths.personal_vault.attachments_dir },
+  },
+}
 
 ---@module "lazy"
 ---@type LazySpec
@@ -16,13 +31,9 @@ return {
     ---@module "obsidian"
     ---@type obsidian.config.ClientOpts|{}
     opts = {
-      dir = my_paths.personal_vault.root_dir,
-      notes_subdir = my_paths.personal_vault.fleeting_notes_dir,
-      new_notes_location = "notes_subdir",
+      workspaces = { PERSONAL_WORKSPACE },
       note_id_func = function(title) return title end,
       disable_frontmatter = true,
-      daily_notes = { folder = my_paths.personal_vault.daily_notes_dir, workdays_only = false },
-      attachments = { img_folder = my_paths.personal_vault.attachments_dir },
       legacy_commands = false,
     },
     keys = {
@@ -32,7 +43,7 @@ return {
         "<leader>na",
         function()
           local note = assert_note(my_paths.personal_vault.inbox_note_path)
-          local text = my_utils.trimmed(require("obsidian.api").input("Append To Inbox", { default = "- " }))
+          local text = require("obsidian.api").input("Append To Inbox", { default = "- " })
           if text then note:write({ update_content = function(lines) return vim.list_extend(lines, { text }) end }) end
           if vim.fn.bufnr(note.path.filename) ~= -1 then vim.cmd.checktime(note.path.filename) end
         end,
