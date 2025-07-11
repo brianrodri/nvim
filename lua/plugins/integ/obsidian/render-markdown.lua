@@ -10,6 +10,15 @@ return {
       -- :help render-markdown-info-obsidian.nvim
       ui = { enable = false },
     },
+    config = function(_, opts)
+      require("obsidian").setup(opts)
+
+      -- https://github.com/obsidian-nvim/obsidian.nvim/wiki/Keymaps#remove-default-mapping
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "ObsidianNoteEnter",
+        callback = function(ev) vim.keymap.del("n", "<CR>", { buffer = ev.buf }) end,
+      })
+    end,
   },
 
   {
