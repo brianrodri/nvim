@@ -10,7 +10,7 @@ local M = {}
 ---@return LazySpec[]
 function M.flatten_submodule_plugins()
   -- NOTE: Gets path of the script that called this function: https://stackoverflow.com/a/23535333/4859885
-  local script_path = my_paths.resolve(debug.getinfo(2, "S").source:sub(2))
+  local script_path = assert(my_paths.resolve(debug.getinfo(2, "S").source:sub(2)), "error reading execution context")
   local path_components = vim
     .iter(vim.fs.parents(script_path))
     :map(function(path) return vim.startswith(path, MY_PLUGINS_DIR) and vim.fs.basename(path) or nil end)

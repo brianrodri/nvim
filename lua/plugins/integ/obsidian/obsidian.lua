@@ -1,11 +1,5 @@
 local my_paths = require("my.paths")
-
----@param query string A path, filename, note ID, alias, title, etc. that matches exactly one note.
-local function assert_note(query)
-  local note = require("obsidian").get_client():resolve_note(query)
-  assert(require("obsidian.note").is_note_obj(note), vim.inspect(query) .. " did not resolve to exactly one note")
-  return note
-end
+local my_utils = require("my.utils")
 
 ---@module "obsidian"
 ---@type obsidian.workspace.WorkspaceSpec
@@ -27,6 +21,7 @@ local PERSONAL_WORKSPACE = {
 return {
   {
     "obsidian-nvim/obsidian.nvim",
+    enabled = my_paths.personal_vault.root_dir ~= nil,
     dependencies = { "nvim-lua/plenary.nvim" },
     ---@module "obsidian"
     ---@type obsidian.config.ClientOpts|{}
@@ -42,17 +37,19 @@ return {
       {
         "<leader>na",
         function()
-          local note = assert_note(my_paths.personal_vault.inbox_note_path)
-          local text = require("obsidian.api").input("Append To Inbox", { default = "- " })
-          if text then note:write({ update_content = function(lines) return vim.list_extend(lines, { text }) end }) end
-          if vim.fn.bufnr(note.path.filename) ~= -1 then vim.cmd.checktime(note.path.filename) end
+          local note = assert(require("obsidian").get_client():resolve_note(my_paths.personal_vault.inbox_note_path))
+          local text = my_utils.trimmed(vim.fn.input({ prompt = "Append To Inbox", default = "- " }))
+          if text then note:write({ update_content = function(old) return vim.list_extend(old, { text }) end }) end
         end,
         desc = "Append To Inbox (obsidian)",
         silent = true,
       },
       {
         "<leader>no",
-        function() assert_note(my_paths.personal_vault.inbox_note_path):open({ sync = true }) end,
+        function()
+          local note = assert(require("obsidian").get_client():resolve_note(my_paths.personal_vault.inbox_note_path))
+          note:open({ sync = true })
+        end,
         desc = "Open Inbox (obsidian)",
         silent = true,
       },
