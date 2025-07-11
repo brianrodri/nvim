@@ -40,6 +40,8 @@ return {
           local note = assert(require("obsidian").get_client():resolve_note(my_paths.personal_vault.inbox_note_path))
           local text = my_utils.trimmed(vim.fn.input({ prompt = "Append To Inbox", default = "- " }))
           if text then note:write({ update_content = function(old) return vim.list_extend(old, { text }) end }) end
+          -- TODO(obsidian-nvim/obsidian.nvim#282): Allow obsidian plugin to handle this instead.
+          if vim.fn.bufnr(note.path.filename) ~= -1 then vim.cmd.checktime(note.path.filename) end
         end,
         desc = "Append To Inbox (obsidian)",
         silent = true,
