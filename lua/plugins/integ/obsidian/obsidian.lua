@@ -28,7 +28,10 @@ return {
       workspaces = { PERSONAL_WORKSPACE },
       note_id_func = function(title) return title end,
       disable_frontmatter = true,
+      footer = { enabled = true },
+      -- Disabled legacy options:
       legacy_commands = false,
+      statusline = { enabled = false },
     },
     keys = {
       { "<leader>nn", ":Obsidian new<cr>", desc = "New Note", silent = true },
