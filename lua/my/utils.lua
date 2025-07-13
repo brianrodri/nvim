@@ -34,14 +34,4 @@ function M.dedupe(items)
   return vim.tbl_keys(set)
 end
 
---- Returns a non-empty copy of the provided string with leading and trailing whitespace removed, otherwise `nil`.
----
----@param text string|?
----@return string|? non_empty_string_or_nil
-function M.trimmed(text)
-  local trimmed = (text or ""):gsub("^%s+", ""):gsub("%s+$", "")
-  if vim.fn.empty(trimmed) == 1 then return nil end
-  return trimmed
-end
-
 return M

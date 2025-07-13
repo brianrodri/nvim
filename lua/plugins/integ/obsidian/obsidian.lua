@@ -1,5 +1,4 @@
 local my_paths = require("my.paths")
-local my_utils = require("my.utils")
 
 ---@module "obsidian"
 ---@type obsidian.workspace.WorkspaceSpec
@@ -38,8 +37,8 @@ return {
         "<leader>na",
         function()
           local note = assert(require("obsidian").get_client():resolve_note(my_paths.personal_vault.inbox_note_path))
-          local input = my_utils.trimmed(vim.fn.input({ prompt = "Append To Inbox", default = "- " }))
-          if input then note:write({ update_content = function(old) return vim.list_extend(old, { input }) end }) end
+          local text = require("obsidian.api").input("Append To Inbox", { default = "- " })
+          if text then note:write({ update_content = function(lines) return vim.list_extend(lines, { text }) end }) end
         end,
         desc = "Append To Inbox (obsidian)",
         silent = true,
