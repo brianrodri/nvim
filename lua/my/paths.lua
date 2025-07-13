@@ -14,7 +14,6 @@ M.lazy_plugins_dir = M.resolve(vim.fn.stdpath("data"), "lazy")
 
 M.personal_vault = {
   root_dir = M.resolve("~/Documents/Vault"),
-  inbox_note_path = "0 - Index/Inbox.md",
   daily_notes_dir = "1 - Journal/Daily",
   fleeting_notes_dir = "2 - Fleeting Notes",
   attachments_dir = "8 - Meta/Attachments",

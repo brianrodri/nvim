@@ -35,24 +35,15 @@ return {
     },
     keys = {
       { "<leader>nn", ":Obsidian new<cr>", desc = "New Note", silent = true },
-      { "<leader>nt", ":Obsidian today<cr>", desc = "Open Today's Note", silent = true },
+      { "<leader>nt", ":Obsidian today<cr>", desc = "Open Today's Daily Note", silent = true },
       {
         "<leader>na",
         function()
-          local note = assert(require("obsidian").get_client():resolve_note(my_paths.personal_vault.inbox_note_path))
+          local note = assert(require("obsidian.note").from_file(require("obsidian.daily").daily_note_path(os.time())))
           local text = require("obsidian.api").input("Append To Inbox", { default = "- " })
           if text then note:write({ update_content = function(lines) return vim.list_extend(lines, { text }) end }) end
         end,
-        desc = "Append To Inbox (obsidian)",
-        silent = true,
-      },
-      {
-        "<leader>no",
-        function()
-          local note = assert(require("obsidian").get_client():resolve_note(my_paths.personal_vault.inbox_note_path))
-          note:open({ sync = true })
-        end,
-        desc = "Open Inbox (obsidian)",
+        desc = "Append To Today's Daily Note (obsidian)",
         silent = true,
       },
     },
