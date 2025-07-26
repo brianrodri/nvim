@@ -11,7 +11,7 @@ return {
     opts = {
       ensure_installed = {},
       indent = { enable = true },
-      highlight = { enable = true },
+      highlight = { enable = true, use_languagetree = true },
     },
     ---@param opts TSConfig|?
     config = function(_, opts)
