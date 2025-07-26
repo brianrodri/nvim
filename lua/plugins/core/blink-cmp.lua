@@ -8,7 +8,9 @@ return {
     ---@module "blink-cmp"
     ---@type blink.cmp.Config
     opts = {
+      signature = { enabled = true },
       completion = {
+        documentation = { auto_show = true },
         ghost_text = { enabled = true },
         menu = {
           -- https://cmp.saghen.dev/recipes#avoid-multi-line-completion-ghost-text
