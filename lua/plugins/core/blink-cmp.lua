@@ -1,3 +1,6 @@
+-- https://cmp.saghen.dev/recipes#disable-completion-in-only-shell-command-mode
+local function is_cmdline() return vim.fn.getcmdtype() == ":" and vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!") end
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -37,7 +40,7 @@ return {
         providers = {
           cmdline = {
             -- https://cmp.saghen.dev/recipes#disable-completion-in-only-shell-command-mode
-            enabled = function() return vim.fn.getcmdtype() ~= ":" or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!") end,
+            enabled = function() return not is_cmdline() end,
           },
         },
       },
