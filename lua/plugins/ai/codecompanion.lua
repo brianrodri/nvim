@@ -1,9 +1,12 @@
+local GOLDEN_RATIO_INV = 2 / (1 + math.sqrt(5))
+
 ---@module "lazy"
 ---@type LazySpec
 return {
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
+      "echasnovski/mini.diff",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
@@ -33,6 +36,11 @@ return {
         action_palette = {
           provider = "snacks",
           show_default_prompt_library = true,
+        },
+        diff = { provider = "mini_diff" },
+        window = {
+          width = 1 - GOLDEN_RATIO_INV,
+          height = GOLDEN_RATIO_INV,
         },
       },
     },
