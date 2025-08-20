@@ -6,7 +6,6 @@ return {
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
-      "echasnovski/mini.diff",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
@@ -27,17 +26,11 @@ return {
           },
         },
       },
-      strategies = {
-        chat = { adapter = { name = "anthropic", model = "claude-opus-4-20250514" } },
-        inline = { adapter = { name = "anthropic", model = "claude-opus-4-20250514" } },
-        cmd = { adapter = { name = "anthropic", model = "claude-opus-4-20250514" } },
-      },
       display = {
         action_palette = {
           provider = "snacks",
           show_default_prompt_library = true,
         },
-        diff = { provider = "mini_diff" },
         window = {
           width = 1 - GOLDEN_RATIO_INV,
           height = GOLDEN_RATIO_INV,
