@@ -1,3 +1,5 @@
+local my_mini_files_git = require("my.mini-files-git")
+
 --- Within a mini.files buffer: opens the item under the current cursor in a new split.
 ---
 ---@param direction "belowright vertical"|"belowright horizontal"|"aboveleft horizontal"|"aboveleft vertical"
@@ -42,7 +44,12 @@ return {
           map("<C-k>", function() open_in_split("aboveleft horizontal") end, "Open To Top")
           map("<C-h>", function() open_in_split("aboveleft vertical") end, "Open To Left")
           map("<C-c>", function() require("mini.files").close() end, "Close")
+          my_mini_files_git.show_git_status(buf_id)
         end,
+      })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "MiniFilesBufferUpdate",
+        callback = function(event) my_mini_files_git.show_git_status(event.data.buf_id) end,
       })
       vim.api.nvim_create_autocmd("User", {
         pattern = "MiniFilesActionRename",
