@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "LazyDone",
   callback = function()
     require("snacks.util").set_hl({
-      SnacksDashboardHeader = "Green",
+      SnacksDashboardHeader = "RainbowDelimiterGreen",
       SnacksDashboardIcon = "Comment",
       SnacksDashboardDesc = "Comment",
       SnacksDashboardKey = "Green",
