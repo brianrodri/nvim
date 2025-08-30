@@ -6,8 +6,15 @@ local H = {}
 ---@param buf_id number
 function M.show_git_status(buf_id)
   local mini_files = require("mini.files")
-  local status_by_path = H.parse_git_status()
+  local latest_path = mini_files.get_latest_path() or vim.fn.getcwd()
+  local status_by_path = H.parse_git_status(latest_path)
   local num_lines = vim.api.nvim_buf_line_count(buf_id)
+
+  local git_root = vim.system({ "git", "-C", latest_path, "rev-parse", "--show-toplevel" }, { text = true }):wait()
+  if git_root.code ~= 0 or not git_root.stdout then return end
+
+  local abs_git_root = my_paths.resolve(vim.trim(git_root.stdout))
+  if not abs_git_root then return end
 
   vim.api.nvim_buf_clear_namespace(buf_id, H.MY_GIT_NAMESPACE_ID, 0, -1)
 
@@ -17,9 +24,11 @@ function M.show_git_status(buf_id)
   for line = 1, num_lines do
     local entry = mini_files.get_fs_entry(buf_id, line)
     local entry_path = entry and my_paths.resolve(entry.path)
-    local prefixes = entry_path and H.collect_statuses_for_path(entry_path, status_by_path) or {}
-    grouped_prefixes[line] = prefixes or {}
-    max_width = math.max(max_width, vim.iter(prefixes):map(H.get_width):fold(0, function(a, b) return a + b end))
+    if vim.startswith(entry_path or "", abs_git_root .. "/") then
+      local prefixes = entry_path and H.collect_statuses_for_path(entry_path, status_by_path) or {}
+      grouped_prefixes[line] = prefixes or {}
+      max_width = math.max(max_width, vim.iter(prefixes):map(H.get_width):fold(0, function(a, b) return a + b end))
+    end
   end
 
   for line = 1, num_lines do
@@ -51,8 +60,8 @@ H.MY_GIT_NAMESPACE_ID = vim.api.nvim_create_namespace("my.git")
 function H.get_width(prefix_tbl) return vim.fn.strdisplaywidth(prefix_tbl.symbol) end
 
 ---@return table<string, my.PrefixTable[]>
-function H.parse_git_status()
-  local git_result = vim.system({ "git", "status", "--porcelain=v1" }, { text = true }):wait()
+function H.parse_git_status(latest_path)
+  local git_result = vim.system({ "git", "-C", latest_path, "status", "--porcelain=v1" }, { text = true }):wait()
   if git_result.code ~= 0 then return {} end
 
   return vim.iter(vim.split(git_result.stdout or "", "\n")):fold({}, function(tbl, line)
