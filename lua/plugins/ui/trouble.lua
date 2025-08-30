@@ -22,6 +22,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 return {
   {
     "folke/trouble.nvim",
+    -- TODO(folke/trouble#655): Switch back to the main repo when fixed
+    dir = os.getenv("HOME") .. "/Repositories/trouble.nvim",
     cmd = "Trouble",
     ---@module "trouble"
     ---@type trouble.Config|{}

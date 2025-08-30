@@ -4,7 +4,10 @@ return {
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
-    dependencies = { "folke/trouble.nvim", "nvim-lua/plenary.nvim" },
+
+    -- TODO(folke/trouble#655): Re-declare after issue is fixed
+    -- dependencies = { "folke/trouble.nvim", "nvim-lua/plenary.nvim" },
+
     ---@module "todo-comments"
     ---@type TodoOptions|{}
     opts = {
