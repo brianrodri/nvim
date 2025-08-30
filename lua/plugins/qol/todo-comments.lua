@@ -47,8 +47,13 @@ return {
         PERF     = { icon = "󰅒", color = "PERF",     alt = { "OPTIM", "OPTIMIZE", "PERFORMANCE" } },
       },
       merge_keywords = false,
-      highlight = { pattern = { [[.*<(KEYWORDS):]], [[.*<(KEYWORDS)\(.*\):]] } },
-      search = { pattern = "\\s(KEYWORDS)[:\\(]" },
+      highlight = {
+        comments_only = true,
+        pattern = { [[.* (KEYWORDS)\s*:]], [[\v ((KEYWORDS)\([^\)]*\)):]] },
+      },
+      search = {
+        pattern = [[\b(KEYWORDS)[\(:]\s*]],
+      },
     },
     -- stylua: ignore
     -- luacheck: no max line length
