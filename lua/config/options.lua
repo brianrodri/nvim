@@ -27,6 +27,9 @@ vim.opt.showmode = false
 -- Save undo history
 vim.opt.undofile = true
 
+-- Don't use swap fiels, I trust undofile enough
+vim.opt.swapfile = false
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
 
