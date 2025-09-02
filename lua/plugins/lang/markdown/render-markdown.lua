@@ -7,12 +7,12 @@ return {
     ---@module "render-markdown"
     ---@type render.md.UserConfig
     opts = {
-      file_types = { "markdown", "markdown_inline" },
-      bullet = { icons = { "󰍴 " }, right_pad = 0, highlight = "@comment" },
+      file_types = { "markdown", "markdown_inline", "noice" },
+      bullet = { icons = { "󰍴 " }, right_pad = 0, highlight = "RenderMarkdownSign" },
       heading = { backgrounds = {} },
       checkbox = {
-        unchecked = { icon = "󰄱 " },
-        checked = { icon = "󰱒 ", highlight = "RenderMarkdownHint", scope_highlight = "my.todo.obsolete" },
+        checked = { icon = "󰄲 ", highlight = "RenderMarkdownSuccess" },
+        unchecked = { icon = "󰄮 ", highlight = "RenderMarkdownUnchecked" },
       },
     },
     opts_extend = { "file_types" },
