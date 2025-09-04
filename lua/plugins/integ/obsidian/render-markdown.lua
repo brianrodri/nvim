@@ -233,7 +233,7 @@ return {
           },
           question = {
             raw = "[?]",
-            rendered = "󰞋",
+            rendered = "󰮥",
             highlight = "RenderMarkdownWarn",
           },
           quote = {
@@ -272,9 +272,8 @@ return {
     ---@module "render-markdown"
     ---@param opts render.md.UserConfig|?
     config = function(_, opts)
-      if opts and opts.checkbox and opts.checkbox.custom and opts.checkbox.custom.todo then
-        opts.checkbox.custom.todo = nil
-      end
+      opts = vim.tbl_deep_extend("keep", { checkbox = { custom = {} } }, opts or {})
+      opts.checkbox.custom.todo = nil
       require("render-markdown").setup(opts)
     end,
   },
