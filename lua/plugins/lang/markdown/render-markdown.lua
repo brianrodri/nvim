@@ -11,6 +11,7 @@ return {
       bullet = { icons = { "󰍴 " }, right_pad = 0, highlight = "RenderMarkdownSign" },
       heading = { backgrounds = {} },
       checkbox = {
+        bullet = true,
         checked = { icon = "󰄲 ", highlight = "RenderMarkdownSuccess" },
         unchecked = { icon = "󰄮 ", highlight = "RenderMarkdownUnchecked" },
       },
