@@ -10,6 +10,7 @@ return {
     ---@module "copilot"
     ---@type CopilotConfig|{}
     opts = {
+      filetypes = { markdown = true },
       workspace_folders = { my_paths.personal_vault.root_dir },
       ---@module "copilot"
       ---@type SuggestionConfig|{}
