@@ -34,4 +34,6 @@ function M.dedupe(items)
   return vim.tbl_keys(set)
 end
 
+function M.upper_first(str) return select(1, string.gsub(str, "^%l", string.upper)) end
+
 return M
