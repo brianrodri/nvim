@@ -34,4 +34,19 @@ function M.dedupe(items)
   return vim.tbl_keys(set)
 end
 
+--- Converts a string to title case, splitting on underscores and spaces.
+---
+--- @param str string Input string to convert
+--- @return string title_case_str
+function M.title_case(str)
+  local title_case_parts = {}
+  for w_match in string.gmatch(string.lower(str), "%w+") do
+    for word in vim.gsplit(w_match, "[_-]", { trimempty = true }) do
+      local capitalized_word = string.gsub(word, "^%l", string.upper)
+      table.insert(title_case_parts, capitalized_word)
+    end
+  end
+  return table.concat(title_case_parts, " ")
+end
+
 return M
