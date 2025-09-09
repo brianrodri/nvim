@@ -34,7 +34,7 @@ function M.dedupe(items)
   return vim.tbl_keys(set)
 end
 
---- Converts a string to title case, splitting on underscores and spaces.
+--- Converts a string to title case. Splits "words" by underscores, hyphens, and spaces.
 ---
 --- @param str string Input string to convert
 --- @return string title_case_str

@@ -32,6 +32,8 @@ return {
       -- Disabled legacy options:
       legacy_commands = false,
       statusline = { enabled = false },
+      -- :help render-markdown-info-obsidian.nvim
+      ui = { enable = false },
     },
     keys = {
       { "<leader>nn", ":Obsidian new<cr>", desc = "New Note", silent = true },
@@ -47,5 +49,13 @@ return {
         silent = true,
       },
     },
+    config = function(_, opts)
+      require("obsidian").setup(opts)
+      -- https://github.com/obsidian-nvim/obsidian.nvim/wiki/Keymaps#remove-default-mapping
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "ObsidianNoteEnter",
+        callback = function(ev) vim.keymap.del("n", "<CR>", { buffer = ev.buf }) end,
+      })
+    end,
   },
 }
