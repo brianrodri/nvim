@@ -7,14 +7,9 @@ return {
     opts = {
       markdown_oxide = {
         root_markers = { ".obsidian" },
-        capabilities = {
-          workspace = {
-            didChangeWatchedFiles = {
-              dynamicRegistration = true,
-            },
-          },
-        },
+        capabilities = { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } },
       },
     },
+    opts_extend = { "markdown_oxide.root_markers" },
   },
 }

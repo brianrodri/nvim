@@ -64,3 +64,11 @@ vim.api.nvim_create_autocmd("User", {
     end
   end,
 })
+
+-- Disable word wrap on Markdown files.
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Disable word wrap on Markdown files",
+  group = vim.api.nvim_create_augroup("my.markdown.nowrap", { clear = true }),
+  pattern = { "markdown", "mdx", "md" },
+  callback = function(event) vim.bo[event.buf].wrap = false end,
+})
