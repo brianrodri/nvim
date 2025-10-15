@@ -4,6 +4,7 @@ return {
   {
     "kawre/leetcode.nvim",
     dependencies = {
+      "3rd/image.nvim",
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -17,6 +18,7 @@ return {
         ["cpp"] = { imports = function() return require("my.leetcode-imports").cpp end },
       },
       lang = "cpp",
+      image_support = true,
     },
   },
 }
