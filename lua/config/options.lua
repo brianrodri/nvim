@@ -61,7 +61,6 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 -- Use treesitter folding
-vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 99
 
