@@ -14,10 +14,8 @@ return {
     ---@module "leetcode"
     ---@type lc.UserConfig|{}
     opts = {
-      injector = {
-        ["cpp"] = { imports = function() return require("my.leetcode-imports").cpp end },
-      },
       lang = "cpp",
+      injector = { ["cpp"] = { imports = function() return require("my.leetcode-imports").cpp end } },
       image_support = true,
     },
   },
