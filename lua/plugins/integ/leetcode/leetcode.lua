@@ -13,6 +13,9 @@ return {
     ---@module "leetcode"
     ---@type lc.UserConfig|{}
     opts = {
+      injector = {
+        ["cpp"] = { imports = function() return require("my.leetcode-imports").cpp end },
+      },
       lang = "cpp",
       theme = {
         easy_alt = { link = "VirtualTextHint" },
