@@ -1,7 +1,11 @@
 local my_mini_files_git = require("my.mini-files-git")
 local my_utils = require("my.utils")
 
-local function by_extension(entry) return string.gsub(entry.path, ".*%.(.*)$", "%1") or "" end
+local function by_extension(entry)
+  if entry.fs_type == "directory" then return "" end
+  if vim.startswith(entry.name, ".") then return "" end
+  return string.gsub(entry.name, ".*%.(.*)$", "%1") or ""
+end
 
 --- Within a mini.files buffer: opens the item under the current cursor in a new split.
 ---
