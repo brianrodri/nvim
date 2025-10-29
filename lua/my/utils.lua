@@ -49,19 +49,19 @@ function M.title_case(str)
   return table.concat(title_case_parts, " ")
 end
 
-function M.stable_sort_by(items, key_func)
-  local indexes = {}
-  local keys = {}
-  for i, item in ipairs(items) do
-    table.insert(indexes, i)
-    table.insert(keys, key_func(item))
+function M.sort_by(items, key_func)
+  local key_list = {}
+  local index_list = {}
+  for index, item in ipairs(items) do
+    table.insert(key_list, key_func(item))
+    table.insert(index_list, index)
   end
-  table.sort(indexes, function(i, j)
-    if keys[i] < keys[j] then return true end
-    if keys[j] < keys[i] then return false end
-    return i < j
+  table.sort(index_list, function(a_index, b_index)
+    if key_list[a_index] < key_list[b_index] then return true end
+    if key_list[b_index] < key_list[a_index] then return false end
+    return a_index < b_index
   end)
-  return vim.iter(indexes):map(function(i) return items[i] end):totable()
+  return vim.iter(index_list):map(function(index) return items[index] end):totable()
 end
 
 return M
