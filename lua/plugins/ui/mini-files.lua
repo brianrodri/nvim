@@ -1,4 +1,7 @@
 local my_mini_files_git = require("my.mini-files-git")
+local my_utils = require("my.utils")
+
+local function by_extension(entry) return string.gsub(entry.path, ".*%.(.*)$", "%1") or "" end
 
 --- Within a mini.files buffer: opens the item under the current cursor in a new split.
 ---
@@ -22,7 +25,10 @@ return {
     "echasnovski/mini.files",
     lazy = false,
     opts = {
-      content = { filter = function() return true end },
+      content = {
+        filter = function() return true end,
+        sort = function(...) return my_utils.stable_sort_by(require("mini.files").default_sort(...), by_extension) end,
+      },
       mappings = { go_in = "", go_out = "", reset = "<esc>" },
       windows = { preview = true, width_preview = 80 },
     },
