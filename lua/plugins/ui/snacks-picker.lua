@@ -10,12 +10,8 @@ return {
     opts = {
       picker = {
         show_empty = true,
-        matcher = { sort_empty = true, history_bonus = true },
-        layout = {
-          preset = "ivy",
-          -- INFO: This is: `1 - (1 / GOLDEN_RATIO)`
-          layout = { height = 0.38196601 },
-        },
+        -- HINT: This is: `1 - (1 / GOLDEN_RATIO)`:
+        layout = { preset = "ivy", layout = { height = 0.38196601 } },
       },
     },
     -- stylua: ignore
@@ -31,8 +27,7 @@ return {
       { "<leader>fg", function() require("snacks.picker").git_status() end,                                           desc = "Files (git status)"     },
       { "<leader>fG", function() require("snacks.picker").git_files() end,                                            desc = "Files (git)"            },
       { "<leader>fp", function() require("snacks.picker").projects() end,                                             desc = "Projects"               },
-      { "<leader>fr", function() require("snacks.picker").recent({ filter = { buf = 0 } }) end,                       desc = "Recent Files"           },
-      { "<leader>fR", function() require("snacks.picker").recent() end,                                               desc = "Recent Files (cwd)"     },
+      { "<leader>fr", function() require("snacks.picker").recent({ filter = { cwd = true } }) end,                    desc = "Recent Files"           },
       -- Grep
       { "<leader>sb", function() require("snacks.picker").lines() end,                                                desc = "Grep Buffer"            },
       { "<leader>sB", function() require("snacks.picker").grep_buffers() end,                                         desc = "Grep All Buffers"       },
