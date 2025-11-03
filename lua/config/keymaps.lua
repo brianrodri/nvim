@@ -2,6 +2,7 @@
 vim.keymap.set("n", "<esc>", ":nohlsearch<cr>", { silent = true })
 
 -- Buffer controls
+vim.keymap.set("n", "<leader>bw", "<cmd>:w<cr>", { desc = "Write Buffer" })
 vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 vim.keymap.set("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
