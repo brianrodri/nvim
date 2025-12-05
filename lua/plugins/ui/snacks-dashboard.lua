@@ -67,4 +67,20 @@ return {
       },
     },
   },
+
+  {
+    "jpwol/thorn.nvim",
+    opts = {
+      on_highlights = function(hl, palette)
+        hl.SnacksDashboardHeader = { fg = palette.lightgreen }
+        hl.SnacksDashboardIcon = { fg = palette.lightgreen }
+        hl.SnacksDashboardDesc = { fg = palette.gray }
+        hl.SnacksDashboardKey = { fg = palette.gray }
+        hl.SnacksDashboardFooter = { fg = palette.gray }
+        hl.SnacksDashboardSpecial = { fg = palette.lightgreen }
+        hl.SnacksDashboardDir = { fg = palette.hbg[0] }
+        hl.SnacksDashboardFile = { fg = palette.hfg[0] }
+      end,
+    },
+  },
 }
