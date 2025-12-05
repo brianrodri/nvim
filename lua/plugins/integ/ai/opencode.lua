@@ -5,6 +5,7 @@ return {
     "NickvanDyke/opencode.nvim",
     dependencies = { "folke/snacks.nvim" },
     -- stylua: ignore
+    -- luacheck: no max line length
     keys = {
       { "<leader>aa", function() require("opencode").ask("@this: ", { submit = true }) end, mode = { "n", "x" }, desc = "Ask opencode" },
       { "<leader>a!", function() require("opencode").select() end,                          mode = { "n", "x" }, desc = "Execute opencode action…" },
