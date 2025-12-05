@@ -2,27 +2,30 @@
 ---@type LazySpec
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "jpwol/thorn.nvim",
+    -- TODO(jpwol/thorn.nvim#16): I need `@markup.quote`
+    dir = "~/Repositories/thorn.nvim",
+    lazy = false,
     priority = 1000,
-    ---@module "catppuccin"
-    ---@type CatppuccinOptions|{}
     opts = {
-      auto_integrations = true,
-      custom_highlights = function(colors)
-        return {
-          SnacksDashboardHeader = { fg = colors.green },
-          SnacksDashboardIcon = { fg = colors.green },
-          SnacksDashboardDesc = { fg = colors.subtext0 },
-          SnacksDashboardKey = { fg = colors.subtext0 },
-          SnacksDashboardFooter = { fg = colors.subtext0 },
-          SnacksDashboardSpecial = { fg = colors.green },
-        }
+      theme = "dark",
+      background = "warm",
+      styles = {
+        strings = { italic = false, bold = false },
+        keywords = { italic = false, bold = false },
+      },
+      on_highlights = function(hl, palette)
+        hl.SnacksDashboardHeader = { fg = palette.lightgreen }
+        hl.SnacksDashboardIcon = { fg = palette.lightgreen }
+        hl.SnacksDashboardDesc = { fg = palette.gray }
+        hl.SnacksDashboardKey = { fg = palette.gray }
+        hl.SnacksDashboardFooter = { fg = palette.gray }
+        hl.SnacksDashboardSpecial = { fg = palette.lightgreen }
       end,
     },
     config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-mocha")
+      require("thorn").setup(opts)
+      vim.cmd([[colorscheme thorn]])
     end,
   },
 }
