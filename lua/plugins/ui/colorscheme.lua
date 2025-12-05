@@ -21,6 +21,8 @@ return {
         hl.SnacksDashboardKey = { fg = palette.gray }
         hl.SnacksDashboardFooter = { fg = palette.gray }
         hl.SnacksDashboardSpecial = { fg = palette.lightgreen }
+        hl.SnacksDashboardDir = { fg = palette.hbg[0] }
+        hl.SnacksDashboardFile = { fg = palette.hfg[0] }
       end,
     },
     config = function(_, opts)
