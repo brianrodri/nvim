@@ -13,6 +13,8 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+---@module "lazy"
+---@type LazySpec
 return {
   {
     "folke/snacks.nvim",
