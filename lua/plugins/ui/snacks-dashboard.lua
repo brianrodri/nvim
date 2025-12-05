@@ -1,18 +1,3 @@
-vim.api.nvim_create_autocmd("User", {
-  group = vim.api.nvim_create_augroup("my.snacks.dashboard.highlights", { clear = true }),
-  pattern = "LazyDone",
-  callback = function()
-    require("snacks.util").set_hl({
-      SnacksDashboardHeader = "RainbowDelimiterGreen",
-      SnacksDashboardIcon = "Comment",
-      SnacksDashboardDesc = "Comment",
-      SnacksDashboardKey = "Green",
-      SnacksDashboardFooter = "Comment",
-      SnacksDashboardSpecial = "Green",
-    })
-  end,
-})
-
 ---@module "lazy"
 ---@type LazySpec
 return {
