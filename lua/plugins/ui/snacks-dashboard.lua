@@ -71,13 +71,14 @@ return {
           -- stylua: ignore
           -- luacheck: no max line length
           keys = {
-            { icon = " ", key = ".", desc = "Resume Session",                        section = "session" },
-            { icon = "󱎸 ", key = "s", desc = "Search Text",    action = "<leader>sg"                      },
-            { icon = "󰱼 ", key = "f", desc = "Find File",      action = "<leader>ff"                      },
-            { icon = "󰝒 ", key = "n", desc = "New File",       action = ":enew"                           },
-            { icon = " ", key = "g", desc = "Lazygit",        action = "<leader>gg"                      },
-            { icon = "󰒲 ", key = "l", desc = "Lazy",           action = "<leader>ll"                      },
-            { icon = " ", key = "q", desc = "Quit",           action = "<leader>qq"                      },
+            { icon = " ", key = ".", desc = "Resume Session",                            section = "session" },
+            { icon = "󱎸 ", key = "s", desc = "Search Text",        action = "<leader>sg"                      },
+            { icon = "󰱼 ", key = "f", desc = "Find File",          action = "<leader>ff"                      },
+            { icon = " ", key = "v", desc = "Today's Daily Note", action = "<leader>vv"                      },
+            { icon = "󰝒 ", key = "n", desc = "New File",           action = ":enew"                           },
+            { icon = " ", key = "g", desc = "Lazygit",            action = "<leader>gg"                      },
+            { icon = "󰒲 ", key = "l", desc = "Lazy",               action = "<leader>ll"                      },
+            { icon = " ", key = "q", desc = "Quit",               action = "<leader>qq"                      },
           },
         },
       },

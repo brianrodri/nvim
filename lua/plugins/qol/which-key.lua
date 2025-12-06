@@ -18,7 +18,7 @@ return {
         { "<leader>f", group = "find",     icon = { icon = "󰥨 ", color = "purple" } },
         { "<leader>g", group = "git",      icon = { icon = " ", color = "grey"   } },
         { "<leader>l", group = "lazy",     icon = { icon = "󰒲 ", color = "blue"   } },
-        { "<leader>n", group = "notes",    icon = { icon = "󰠮 ", color = "purple" } },
+        { "<leader>v", group = "vault",    icon = { icon = " ", color = "purple" } },
         { "<leader>o", group = "toggle",   icon = { icon = " ", color = "orange" } },
         { "<leader>p", group = "project",  icon = { icon = " ", color = "purple" } },
         { "<leader>q", group = "quit",     icon = { icon = "󰈆 ", color = "red"    } },
