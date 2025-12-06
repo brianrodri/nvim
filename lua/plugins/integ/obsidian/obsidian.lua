@@ -30,6 +30,7 @@ return {
       legacy_commands = false,
       -- :help render-markdown-info-obsidian.nvim
       ui = { enable = false },
+      picker = { name = "snacks.pick" },
     },
     keys = {
       { "<leader>vn", ":Obsidian new<cr>", desc = "New Note" },
