@@ -2,6 +2,7 @@
 ---@type LazySpec
 return {
   {
+    enabled = true,
     "jpwol/thorn.nvim",
     lazy = false,
     priority = 1000,
@@ -13,15 +14,16 @@ return {
         keywords = { italic = false, bold = false },
       },
       on_highlights = function(hl, palette)
-        hl.SnacksDashboardHeader = { fg = palette.lightgreen }
-        hl.SnacksDashboardIcon = { fg = palette.lightgreen }
-        hl.SnacksDashboardDesc = { fg = palette.gray }
-        hl.SnacksDashboardKey = { fg = palette.white }
+        hl.SnacksDashboardHeader = { fg = palette.green1 }
+        hl.SnacksDashboardIcon = { fg = palette.green1 }
+        hl.SnacksDashboardDesc = { fg = palette.white }
+        hl.SnacksDashboardKey = { fg = palette.green1 }
         hl.SnacksDashboardFooter = { fg = palette.gray }
-        hl.SnacksDashboardSpecial = { fg = palette.lightgreen }
-        hl.SnacksDashboardDir = { fg = palette.black }
-        hl.SnacksDashboardFile = { fg = palette.gray }
-        hl.SnacksDashboardTerminal = { fg = palette.gray }
+        hl.SnacksDashboardSpecial = { fg = palette.green1 }
+        hl.SnacksDashboardDir = { fg = palette.gray }
+        hl.SnacksDashboardFile = { fg = palette.white }
+        hl.SnacksDashboardTerminal = { fg = palette.white }
+        hl.SnacksDashboardTitle = { fg = palette.green1, bold = true }
       end,
     },
     config = function(_, opts)
