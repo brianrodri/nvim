@@ -13,7 +13,7 @@ local MY_RENDER_MARKDOWN_CHECKBOX_OPTS = {
   hint        = { raw = "[h]", rendered = "󰌶", highlight = "RenderMarkdownHint"      },
   idea        = { raw = "[i]", rendered = "󰛨", highlight = "RenderMarkdownWarn"      },
   important   = { raw = "[!]", rendered = "󰀦", highlight = "RenderMarkdownWarn"      },
-  incomplete  = { raw = "[/]", rendered = "󰡖", highlight = "RenderMarkdownUnchecked" },
+  incomplete  = { raw = "[/]", rendered = "󱞇", highlight = "RenderMarkdownUnchecked" },
   key         = { raw = "[k]", rendered = "󰌆", highlight = "RenderMarkdownWarn"      },
   location    = { raw = "[l]", rendered = "󰍎", highlight = "RenderMarkdownError"     },
   pros        = { raw = "[p]", rendered = "󰔓", highlight = "RenderMarkdownSuccess"   },
@@ -28,33 +28,33 @@ local MY_RENDER_MARKDOWN_CHECKBOX_OPTS = {
 
 --- Inspiration: https://help.obsidian.md/Editing+and+formatting/Callouts
 ---
----@alias my.CalloutOpts { icon: string, highlight: string }
+---@alias my.CalloutOpts { icon: string }
 ---
 ---@type { [string]: my.CalloutOpts }
 -- stylua: ignore
 local MY_RENDER_MARKDOWN_CALLOUT_OPTS = {
-  abstract =  { icon = "󱞏", highlight = "RenderMarkdownInfo" },
-  attention = { icon = "󰀪", highlight = "RenderMarkdownWarn" },
-  bug =       { icon = "󰨰", highlight = "RenderMarkdownError" },
-  check =     { icon = "󰡕", highlight = "RenderMarkdownSuccess" },
-  cite =      { icon = "󱆧", highlight = "RenderMarkdownUnchecked" },
-  danger =    { icon = "󱐌", highlight = "RenderMarkdownError" },
-  done =      { icon = "󰡕", highlight = "RenderMarkdownSuccess" },
-  error =     { icon = "󱐌", highlight = "RenderMarkdownError" },
-  example =   { icon = "󰉹", highlight = "RenderMarkdownHint" },
-  fail =      { icon = "󰛉", highlight = "RenderMarkdownError" },
-  failure =   { icon = "󰛉", highlight = "RenderMarkdownError" },
-  faq =       { icon = "󰘥", highlight = "RenderMarkdownWarn" },
-  help =      { icon = "󰘥", highlight = "RenderMarkdownWarn" },
-  hint =      { icon = "󰌶", highlight = "RenderMarkdownHint" },
-  info =      { icon = "󰋽", highlight = "RenderMarkdownInfo" },
-  missing =   { icon = "󰛉", highlight = "RenderMarkdownError" },
-  question =  { icon = "󰘥", highlight = "RenderMarkdownWarn" },
-  quote =     { icon = "󱆧", highlight = "RenderMarkdownUnchecked" },
-  success =   { icon = "󰡕", highlight = "RenderMarkdownSuccess" },
-  summary =   { icon = "󱞏", highlight = "RenderMarkdownInfo" },
-  tldr =      { icon = "󱞏", highlight = "RenderMarkdownInfo" },
-  todo =      { icon = "󰝖", highlight = "RenderMarkdownSuccess" },
+  abstract =  { icon = "󱞏" },
+  attention = { icon = "󰀪" },
+  bug =       { icon = "󰨰" },
+  check =     { icon = "󰡕" },
+  cite =      { icon = "󱆧" },
+  danger =    { icon = "󱐌" },
+  done =      { icon = "󰡕" },
+  error =     { icon = "󱐌" },
+  example =   { icon = "󰉹" },
+  fail =      { icon = "󰛉" },
+  failure =   { icon = "󰛉" },
+  faq =       { icon = "󰘥" },
+  help =      { icon = "󰘥" },
+  hint =      { icon = "󰌶" },
+  info =      { icon = "󰋽" },
+  missing =   { icon = "󰛉" },
+  question =  { icon = "󰘥" },
+  quote =     { icon = "󱆧" },
+  success =   { icon = "󰡕" },
+  summary =   { icon = "󱞏" },
+  tldr =      { icon = "󱞏" },
+  todo =      { icon = "󰝖" },
 }
 
 ---@module "render-markdown"
@@ -67,7 +67,6 @@ local function callout_opts_reducer(user_configs, callout_name, my_callout_opts)
     [callout_name] = {
       raw = string.format("[!%s]", string.upper(callout_name)),
       rendered = string.format("%s %s", my_callout_opts.icon, string.upper(callout_name)),
-      highlight = my_callout_opts.highlight,
       category = "obsidian",
     },
   })
