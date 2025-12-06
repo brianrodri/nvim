@@ -12,11 +12,12 @@ return {
     opts = {
       attachments = { img_folder = my_paths.personal_vault.attachments_dir },
       daily_notes = { folder = my_paths.personal_vault.daily_notes_dir, workdays_only = false },
-      disable_frontmatter = true,
+      frontmatter = { enabled = false },
       new_notes_location = "notes_subdir",
       note_id_func = function(title) return title end,
       notes_subdir = my_paths.personal_vault.fleeting_notes_dir,
       workspaces = { { name = "Vault", path = my_paths.personal_vault.root_dir } },
+      legacy_commands = false,
       -- :help render-markdown-info-obsidian.nvim
       ui = { enable = false },
     },
