@@ -31,6 +31,9 @@ return {
     opts = {
       attach_to_untracked = true,
       watch_gitdir = { enable = true },
+      ---@module "gitsigns.config"
+      ---@type Gitsigns.Config|{}
+      diff_opts = { internal = true },
     },
     keys = function(_, keys)
       return vim.list_extend(keys or {}, {
@@ -40,6 +43,7 @@ return {
         { "<leader>gr", function() require("gitsigns").reset_hunk() end, desc = "Reset Hunk" },
         { "<leader>gA", function() require("gitsigns").stage_buffer() end, desc = "Stage Buffer" },
         { "<leader>gR", function() require("gitsigns").reset_buffer() end, desc = "Reset Buffer" },
+        { "<leader>gk", function() require("gitsigns").preview_hunk_inline() end, desc = "Preview Hunk" },
         { "<leader>gK", function() require("gitsigns").preview_hunk() end, desc = "Preview Hunk" },
         { "<leader>gd", function() require("gitsigns").diffthis() end, desc = "Diff Against Index" },
         { "<leader>gD", function() require("gitsigns").diffthis("main") end, desc = "Diff Against Main" },
