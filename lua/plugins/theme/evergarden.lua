@@ -20,7 +20,7 @@ return {
       },
       ---@module "evergarden"
       ---@type evergarden.types.styleconfig|{}
-      style = { keyword = {} },
+      style = { keyword = {}, spell = { "undercurl" } },
       overrides = function(colors)
         return {
           SnacksDashboardHeader = { fg = colors.green },
