@@ -1,13 +1,6 @@
 local my_mini_files_git = require("my.mini-files-git")
 local my_utils = require("my.utils")
 
----@param entry { fs_type: "file" | "directory", name: string, path: string }
-local function my_sort_key(entry)
-  if entry.fs_type == "directory" then return "" end
-  if vim.startswith(entry.name, ".") then return "" end
-  return string.gsub(entry.name, ".*%.(.*)$", "%1") or ""
-end
-
 --- Within a mini.files buffer: opens the item under the current cursor in a new split.
 ---
 ---@param direction "belowright vertical"|"belowright horizontal"|"aboveleft horizontal"|"aboveleft vertical"
@@ -32,7 +25,13 @@ return {
     opts = {
       content = {
         filter = function() return true end,
-        sort = function(...) return my_utils.sort_by(require("mini.files").default_sort(...), my_sort_key) end,
+        sort = function(...)
+          return my_utils.sort_by(require("mini.files").default_sort(...), function(entry)
+            if entry.fs_type == "directory" then return "" end
+            if vim.startswith(entry.name, ".") then return "" end
+            return string.gsub(entry.name, ".*%.(.*)$", "%1") or ""
+          end)
+        end,
       },
       mappings = { go_in = "", go_out = "", reset = "<esc>" },
       windows = { preview = true, width_preview = 80 },
