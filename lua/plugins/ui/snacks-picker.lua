@@ -11,8 +11,7 @@ return {
       picker = {
         exclude = { "*.uid", "**/assets/*", "**/addons/*" },
         show_empty = true,
-        -- HINT: This is: `1 - (1 / GOLDEN_RATIO)`:
-        layout = { preset = "ivy", layout = { height = 0.38196601 } },
+        layout = { preset = "ivy", layout = { height = 0.61803399 } }, -- HINT: This number is `1 / GOLDEN_RATIO`.
       },
     },
     -- stylua: ignore
