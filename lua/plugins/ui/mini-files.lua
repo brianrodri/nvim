@@ -24,7 +24,12 @@ return {
     lazy = false,
     opts = {
       content = {
-        filter = function() return true end,
+        ---@module "mini.files"
+        ---@param entry { fs_type: "file" | "directory", name: string, path: string }
+        filter = function(entry)
+          if entry.fs_type == "file" and vim.endswith(entry.name, ".uid") then return false end
+          return true
+        end,
         sort = function(...)
           return my_utils.sort_by(require("mini.files").default_sort(...), function(entry)
             if entry.fs_type == "directory" then return "" end

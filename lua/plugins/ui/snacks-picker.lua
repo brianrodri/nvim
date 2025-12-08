@@ -9,6 +9,7 @@ return {
     ---@type snacks.Config
     opts = {
       picker = {
+        exclude = { "*.uid", "**/assets/*", "**/addons/*" },
         show_empty = true,
         -- HINT: This is: `1 - (1 / GOLDEN_RATIO)`:
         layout = { preset = "ivy", layout = { height = 0.38196601 } },
