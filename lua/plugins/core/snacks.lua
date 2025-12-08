@@ -25,5 +25,6 @@ return {
     keys = {
       { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
     },
+    init = function() vim.g.snacks_animate = false end,
   },
 }
