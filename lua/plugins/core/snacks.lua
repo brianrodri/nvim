@@ -13,6 +13,7 @@ return {
       explorer = { enabled = false },
       -- Enabled
       bigfile = { enabled = true },
+      indent = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
