@@ -10,16 +10,20 @@ return {
         enabled = true,
         sections = {
           { section = "header" },
-          { icon = "󰌌 ", pane = 2, section = "keys", indent = 2, padding = 1 },
+          { section = "startup" },
+
+          { pane = 2, icon = "󰌌 ", section = "keys", indent = 2, padding = 1 },
+
           {
+            pane = 2,
             icon = "󱋡 ",
             title = "Recent Files",
-            pane = 2,
             section = "recent_files",
             cwd = true,
             indent = 2,
             padding = 1,
           },
+
           {
             pane = 2,
             icon = " ",
@@ -28,19 +32,18 @@ return {
             indent = 2,
             padding = 1,
           },
+
           {
             pane = 2,
             icon = " ",
             title = "Git Status",
             section = "terminal",
             enabled = function() return require("snacks.git").get_root() ~= nil end,
-            height = 5,
-            padding = 1,
             cmd = "git --no-pager diff --stat -B -M -C --find-copies-harder",
             ttl = 5 * 60,
-            indent = 2,
+            indent = 1,
+            padding = 1,
           },
-          { section = "startup" },
         },
         preset = {
           header = [[
@@ -71,14 +74,14 @@ return {
           -- stylua: ignore
           -- luacheck: no max line length
           keys = {
-            { icon = " ", key = ".", desc = "Resume Session",                            section = "session" },
-            { icon = "󱎸 ", key = "s", desc = "Search Text",        action = "<leader>sg"                      },
-            { icon = "󰱼 ", key = "f", desc = "Find File",          action = "<leader>ff"                      },
-            { icon = " ", key = "v", desc = "Today's Daily Note", action = "<leader>vv"                      },
-            { icon = "󰝒 ", key = "n", desc = "New File",           action = ":enew"                           },
-            { icon = " ", key = "g", desc = "Lazygit",            action = "<leader>gg"                      },
-            { icon = "󰒲 ", key = "l", desc = "Lazy",               action = "<leader>ll"                      },
-            { icon = " ", key = "q", desc = "Quit",               action = "<leader>qq"                      },
+            { icon = " ", key = ".", desc = "Resume Session",                         section = "session" },
+            { icon = "󰝒 ", key = "n", desc = "New File",        action = ":enew"                           },
+            { icon = "󰱼 ", key = "f", desc = "Find File",       action = "<leader>ff"                      },
+            { icon = "󱎸 ", key = "s", desc = "Search Text",     action = "<leader>sg"                      },
+            { icon = " ", key = "v", desc = "Open Daily Note", action = "<leader>vv"                      },
+            { icon = " ", key = "g", desc = "Lazygit",         action = "<leader>gg"                      },
+            { icon = "󰒲 ", key = "l", desc = "Lazy",            action = "<leader>ll"                      },
+            { icon = " ", key = "q", desc = "Quit",            action = "<leader>qq"                      },
           },
         },
       },
