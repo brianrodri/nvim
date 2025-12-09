@@ -38,16 +38,29 @@ end
 
 ---@type table<string, my.PrefixTable>
 H.STATUS_MAP = {
-  ["A"] = { symbol = " ", highlight = "GitSignsAdd" },
-  ["C"] = { symbol = " ", highlight = "GitSignsChange" },
-  ["D"] = { symbol = " ", highlight = "GitSignsDelete" },
-  ["M"] = { symbol = " ", highlight = "GitSignsChange" },
-  ["R"] = { symbol = " ", highlight = "GitSignsChange" },
-  ["T"] = { symbol = " ", highlight = "GitSignsChange" },
-  ["U"] = { symbol = " ", highlight = "GitSignsChange" },
-  ["!"] = { symbol = " ", highlight = "GitSignsUntracked" },
-  ["?"] = { symbol = " ", highlight = "GitSignsUntracked" },
-  ["m"] = { symbol = " ", highlight = "GitSignsChange" },
+  ["M "] = { symbol = "󱇧 ", highlight = "SnacksPickerGitStatusModified" }, --  Modified (staged)
+  ["A "] = { symbol = "󰝒 ", highlight = "SnacksPickerGitStatusAdded" }, --     Added (staged)
+  ["D "] = { symbol = "󱪡 ", highlight = "SnacksPickerGitStatusDeleted" }, --   Deleted (staged)
+  ["R "] = { symbol = "󰪹 ", highlight = "SnacksPickerGitStatusRenamed" }, --   Renamed (staged)
+  ["C "] = { symbol = "󰈢 ", highlight = "SnacksPickerGitStatusCopied" }, --    Copied (staged)
+  ["MM"] = { symbol = "󰢪 ", highlight = "SnacksPickerGitStatusModified" }, --  Modified both (staged)
+  ["AM"] = { symbol = "󰢪 ", highlight = "SnacksPickerGitStatusModified" }, --  Added then modified
+  ["AD"] = { symbol = "󰢪 ", highlight = "SnacksPickerGitStatusDeleted" }, --   Added then deleted
+  ["RM"] = { symbol = "󰢪 ", highlight = "SnacksPickerGitStatusModified" }, --  Renamed then modified
+  ["RD"] = { symbol = "󰢪 ", highlight = "SnacksPickerGitStatusDeleted" }, --   Renamed then deleted
+  ["CM"] = { symbol = "󰢪 ", highlight = "SnacksPickerGitStatusModified" }, --  Copied then modified
+  ["CD"] = { symbol = "󰢪 ", highlight = "SnacksPickerGitStatusDeleted" }, --   Copied then deleted
+  [" M"] = { symbol = "󱇨 ", highlight = "SnacksPickerGitStatusModified" }, --  Modified (unstaged)
+  [" D"] = { symbol = "󱪢 ", highlight = "SnacksPickerGitStatusDeleted" }, --   Deleted  (unstaged)
+  ["??"] = { symbol = "󱀶 ", highlight = "SnacksPickerGitStatusUntracked" }, -- Untracked
+  ["!!"] = { symbol = "󰘓 ", highlight = "SnacksPickerGitStatusIgnored" }, --   Ignored
+  ["UU"] = { symbol = "󱓌 ", highlight = "SnacksPickerGitStatusUnmerged" }, --  Both modified
+  ["AA"] = { symbol = "󱓌 ", highlight = "SnacksPickerGitStatusUnmerged" }, --  Both added
+  ["DD"] = { symbol = "󱓌 ", highlight = "SnacksPickerGitStatusUnmerged" }, --  Both deleted
+  ["AU"] = { symbol = "󱓌 ", highlight = "SnacksPickerGitStatusUnmerged" }, --  Added by us
+  ["UA"] = { symbol = "󱓌 ", highlight = "SnacksPickerGitStatusUnmerged" }, --  Added by them
+  ["DU"] = { symbol = "󱓌 ", highlight = "SnacksPickerGitStatusUnmerged" }, --  Deleted by us
+  ["UD"] = { symbol = "󱓌 ", highlight = "SnacksPickerGitStatusUnmerged" }, --  Deleted by them
 }
 
 ---@type integer
@@ -65,7 +78,7 @@ function H.parse_git_status(latest_path)
   if git_result.code ~= 0 then return {} end
 
   return vim.iter(vim.split(git_result.stdout or "", "\n")):fold({}, function(tbl, line)
-    local status_code, rel_path = line:match("^.(.) (.*)$")
+    local status_code, rel_path = line:match("^(..) (.*)$")
     local abs_path = rel_path and my_paths.resolve(rel_path)
     local git_status = status_code and H.STATUS_MAP[status_code]
     if abs_path and git_status then tbl[abs_path] = vim.list_extend(tbl[abs_path] or {}, { git_status }) end
