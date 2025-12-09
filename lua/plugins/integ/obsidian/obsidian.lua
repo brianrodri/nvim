@@ -1,14 +1,5 @@
+local my_obsidian_pinned_note = require("my.obsidian-pinned-note")
 local my_paths = require("my.paths")
-
-local function append_to_daily()
-  local note_path_ok, note_path = pcall(require("obsidian.daily").daily_note_path, os.time())
-  if not note_path_ok or not note_path then return end
-  local note_ok, note = pcall(require("obsidian.note").from_file, note_path)
-  if not note_ok or not note then return end
-  local text_ok, text = pcall(vim.fn.input, "Append To Today's Daily Note", "- ")
-  if not text_ok or not text then return end
-  note:write({ update_content = function(lines) return vim.list_extend(lines, { text }) end })
-end
 
 ---@module "lazy"
 ---@type LazySpec
@@ -33,12 +24,13 @@ return {
       picker = { name = "snacks.pick" },
     },
     keys = {
-      { "<leader>vn", ":Obsidian new<cr>", desc = "New Note" },
-      { "<leader>vs", ":Obsidian search<cr>", desc = "Search Notes" },
-      { "<leader>vf", ":Obsidian quick_switch<cr>", desc = "Find Note" },
-      { "<leader>vv", ":Obsidian today<cr>", desc = "Open Today's Daily Note" },
-      { "<leader>vo", ":Obsidian open<cr>", desc = "Open Obsidian" },
-      { "<leader>va", append_to_daily, desc = "Append To Today's Daily Note", silent = true },
+      { "<leader>vn", ":Obsidian new<cr>", desc = "New Note", silent = true },
+      { "<leader>vs", ":Obsidian search<cr>", desc = "Search Notes", silent = true },
+      { "<leader>vf", ":Obsidian quick_switch<cr>", desc = "Find Note", silent = true },
+      { "<leader>vo", ":Obsidian open<cr>", desc = "Open Obsidian", silent = true },
+      { "<leader>vv", my_obsidian_pinned_note.open_pinned_note, desc = "Open Pinned Note", silent = true },
+      { "<leader>va", my_obsidian_pinned_note.append_to_pinned_note, desc = "Append To Pinned Note", silent = true },
+      { "<leader>vp", my_obsidian_pinned_note.pick_pinned_note, desc = "Pin/Unpin Note", silent = true },
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
