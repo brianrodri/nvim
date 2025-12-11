@@ -17,6 +17,7 @@ M.personal_vault = {
   daily_notes_dir = "1 - Journal/Daily",
   fleeting_notes_dir = "2 - Fleeting Notes",
   attachments_dir = "8 - Meta/Attachments",
+  meta_dir = "8 - Meta",
 }
 
 return M

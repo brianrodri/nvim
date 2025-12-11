@@ -34,8 +34,16 @@ function M.pick_pinned_note(bufnr)
     set_pinned_note(current_note)
   else
     require("snacks.picker").recent({
-      title = "Pin a Note",
-      filter = { cwd = my_paths.personal_vault.root_dir },
+      title = "Note to be Pinned",
+      filter = {
+        cwd = my_paths.personal_vault.root_dir,
+        filter = function(p)
+          if not vim.endswith(p.file, ".md") then return false end
+          if string.find(p.file, my_paths.personal_vault.meta_dir) then return false end
+          return true
+        end,
+      },
+      layout = { preset = "vscode", layout = { height = 0.14589803 } },
       confirm = function(picker, item)
         picker:close()
         set_pinned_note(require("obsidian.note").from_file(item._path or item.filename or nil))
