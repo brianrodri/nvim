@@ -6,12 +6,13 @@ return {
     dependencies = { "tpope/vim-repeat" },
     opts = {
       mapping = {
-        key = "<leader>nX",
+        key = "<leader>vX",
         desc = "Change List Type",
+        filetypes = { "markdown" },
       },
       checkbox_toggle = {
         enabled = true,
-        key = "<leader>nx",
+        key = "<leader>vx",
         desc = "Toggle Checkbox",
         filetypes = { "markdown" },
       },
