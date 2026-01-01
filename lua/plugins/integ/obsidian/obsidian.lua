@@ -11,7 +11,7 @@ return {
     ---@module "obsidian"
     ---@type obsidian.config
     opts = {
-      attachments = { img_folder = my_paths.personal_vault.attachments_dir },
+      attachments = { folder = my_paths.personal_vault.attachments_dir },
       daily_notes = { folder = my_paths.personal_vault.daily_notes_dir, workdays_only = false },
       frontmatter = { enabled = false },
       new_notes_location = "notes_subdir",
