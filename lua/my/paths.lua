@@ -12,12 +12,26 @@ M.nvim_config_dir = M.resolve(vim.fn.stdpath("config"))
 M.dot_config_dir = M.resolve("~/Repositories/config")
 M.lazy_plugins_dir = M.resolve(vim.fn.stdpath("data"), "lazy")
 
-M.personal_vault = {
-  root_dir = M.resolve("~/Documents/Vault"),
-  daily_notes_dir = "1 - Journal/Daily",
-  fleeting_notes_dir = "2 - Fleeting Notes",
-  attachments_dir = "8 - Meta/Attachments",
-  meta_dir = "8 - Meta",
+M.vault = {
+  name = "My Vault",
+  root_dir = M.resolve("~/Vault"),
+  daily_notes_folder = "1. Journal/1. Daily",
+  fleeting_notes_folder = "2. Fleeting",
+  meta_folder = "9. Meta",
+  attachments_folder = "9. Meta/Attachments",
+  templates_folder = "9. Meta/Templates",
+  auto_frontmatter_folders = {
+    "1. Journal/4. Exercises",
+    "3. Permanent",
+    "4. Literature",
+    "5. Project",
+  },
 }
+
+function M.vault:is_frontmatter_enabled(fname)
+  return vim.iter(self.auto_frontmatter_folders or {}):any(function(folder) return vim.startswith(fname, folder) end)
+end
+
+function M.vault:exists() return self.root_dir ~= nil end
 
 return M

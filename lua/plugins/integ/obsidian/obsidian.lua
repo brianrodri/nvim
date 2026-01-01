@@ -1,27 +1,31 @@
 local my_obsidian_pinned_note = require("my.obsidian-pinned-note")
-local my_paths = require("my.paths")
+local my_vault = require("my.paths").vault
 
 ---@module "lazy"
 ---@type LazySpec
 return {
   {
     "obsidian-nvim/obsidian.nvim",
-    enabled = my_paths.personal_vault.root_dir ~= nil,
+    enabled = my_vault:exists(),
     dependencies = { "nvim-lua/plenary.nvim" },
     ---@module "obsidian"
     ---@type obsidian.config
     opts = {
-      attachments = { folder = my_paths.personal_vault.attachments_dir },
-      daily_notes = { folder = my_paths.personal_vault.daily_notes_dir, workdays_only = false },
-      frontmatter = { enabled = false },
+      workspaces = { { name = my_vault.name, path = my_vault.root_dir } },
+      attachments = { folder = my_vault.attachments_folder },
+      daily_notes = { folder = my_vault.daily_notes_folder, workdays_only = false, default_tags = {} },
+      templates = { folder = my_vault.templates_folder },
+      notes_subdir = my_vault.fleeting_notes_folder,
       new_notes_location = "notes_subdir",
-      note_id_func = function(title) return title end,
-      notes_subdir = my_paths.personal_vault.fleeting_notes_dir,
-      workspaces = { { name = "Vault", path = my_paths.personal_vault.root_dir } },
-      legacy_commands = false,
+      frontmatter = {
+        func = function(note) return note.metadata end,
+        enabled = function(path) return my_vault:is_frontmatter_enabled(path) end,
+      },
+
       -- :help render-markdown-info-obsidian.nvim
       ui = { enable = false },
-      picker = { name = "snacks.pick" },
+      -- TODO: Remove after upgrading to v4.0.0
+      legacy_commands = false,
     },
     keys = {
       { "<leader>vn", ":Obsidian new<cr>", desc = "New Note", silent = true },
@@ -32,13 +36,18 @@ return {
       { "<leader>va", my_obsidian_pinned_note.append_to_pinned_note, desc = "Append To Pinned Note", silent = true },
       { "<leader>vp", my_obsidian_pinned_note.pick_pinned_note, desc = "Pin/Unpin Note", silent = true },
       { "<leader>vy", ":Obsidian extract_note<cr>", desc = "Extract to Note", silent = true, mode = { "n", "v" } },
+      {
+        "<leader>vr",
+        function() require("snacks.picker").recent({ filter = { cwd = my_vault.root_dir } }) end,
+        desc = "Recent Notes",
+      },
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
       -- https://github.com/obsidian-nvim/obsidian.nvim/wiki/Keymaps#remove-default-mapping
       vim.api.nvim_create_autocmd("User", {
         pattern = "ObsidianNoteEnter",
-        callback = function(ev) vim.keymap.del("n", "<CR>", { buffer = ev.buf }) end,
+        callback = function() vim.keymap.del("n", "<CR>", { buffer = true }) end,
       })
     end,
   },
