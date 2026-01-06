@@ -1,12 +1,12 @@
 local my_obsidian_pinned_note = require("my.obsidian-pinned-note")
-local my_vault = require("my.paths").vault
+local my_vault = require("my.vault")
 
 ---@module "lazy"
 ---@type LazySpec
 return {
   {
     "obsidian-nvim/obsidian.nvim",
-    enabled = my_vault:exists(),
+    enabled = my_vault:is_ok(),
     dependencies = { "nvim-lua/plenary.nvim" },
     ---@module "obsidian"
     ---@type obsidian.config
@@ -16,11 +16,9 @@ return {
       daily_notes = { folder = my_vault.daily_notes_folder, workdays_only = false, default_tags = {} },
       templates = { folder = my_vault.templates_folder },
       notes_subdir = my_vault.fleeting_notes_folder,
+      note_id_func = my_vault.note_id_func,
       new_notes_location = "notes_subdir",
-      frontmatter = {
-        func = function(note) return note.metadata end,
-        enabled = function(path) return my_vault:is_frontmatter_enabled(path) end,
-      },
+      frontmatter = { enabled = my_vault.is_frontmatter_enabled, func = my_vault.frontmatter_func },
 
       -- :help render-markdown-info-obsidian.nvim
       ui = { enable = false },
