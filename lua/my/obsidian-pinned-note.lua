@@ -1,5 +1,5 @@
 ---@diagnostic disable: unused-local, unused-function
-local my_vault = require("my.paths").vault
+local my_vault = require("my.vault")
 
 local function get_daily_note()
   local obsidian_daily = require("obsidian.daily")
@@ -33,10 +33,10 @@ function M.pick_pinned_note(bufnr)
   if current_note then
     set_pinned_note(current_note)
   else
-    require("snacks.picker").recent({
+    require("snacks.picker").files({
       title = "Note to be Pinned",
+      dirs = { my_vault.root_dir },
       filter = {
-        cwd = my_vault.root_dir,
         filter = function(p)
           if not vim.endswith(p.file, ".md") then return false end
           if string.find(p.file, my_vault.meta_folder) then return false end
