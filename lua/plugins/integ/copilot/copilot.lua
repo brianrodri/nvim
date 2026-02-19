@@ -1,5 +1,3 @@
-local my_vault = require("my.vault")
-
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -11,7 +9,6 @@ return {
     ---@type CopilotConfig|{}
     opts = {
       filetypes = { markdown = true },
-      workspace_folders = { my_vault.root_dir },
       ---@module "copilot"
       ---@type SuggestionConfig|{}
       suggestion = { enabled = false },
