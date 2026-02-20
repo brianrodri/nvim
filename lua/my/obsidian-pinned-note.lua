@@ -1,25 +1,20 @@
 ---@diagnostic disable: unused-local, unused-function
 local my_vault = require("my.vault")
 
-local function get_daily_note()
-  local obsidian_daily = require("obsidian.daily")
-  return obsidian_daily.daily(0)
+local function get_inbox_note()
+  local obsidian_note = require("obsidian.note")
+  return assert(obsidian_note.from_file(my_vault.inbox_note))
 end
 
 local function get_pinned_note()
   local obsidian_note = require("obsidian.note")
-  return vim.g.MyPinnedNote and obsidian_note.from_file(vim.g.MyPinnedNote) or get_daily_note()
+  return vim.g.MyPinnedNote and obsidian_note.from_file(vim.g.MyPinnedNote) or get_inbox_note()
 end
 
 local function set_pinned_note(target)
-  local daily_note = get_daily_note()
   local old_note = get_pinned_note()
-  local new_note = target or daily_note
-
-  if new_note.path == daily_note.path and old_note.path ~= daily_note.path then
-    vim.notify("󰐃 Daily Note", "info")
-    vim.g.MyPinnedNote = nil
-  elseif new_note.path ~= old_note.path then
+  local new_note = target or get_inbox_note()
+  if new_note.path ~= old_note.path then
     vim.notify("󰐃 " .. new_note.path.stem, "info")
     vim.g.MyPinnedNote = new_note.path.filename
   end
@@ -55,7 +50,6 @@ end
 function M.append_to_pinned_note()
   local note = get_pinned_note()
   local prompt = "Append to " .. vim.inspect(note.path.stem)
-  if note.path.filename == get_daily_note().path.filename then prompt = "Append to Daily Note" end
   local text_ok, text = pcall(require("obsidian.api").input, prompt, { default = "- " })
   if not text_ok or not text then return end
   note:write({

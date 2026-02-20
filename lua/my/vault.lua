@@ -12,6 +12,7 @@ local M = {
   root_dir = my_paths.resolve("~/Vault"),
   daily_notes_folder = "1. Journal/1. Daily",
   fleeting_notes_folder = "2. Fleeting",
+  inbox_note = my_paths.resolve("~/Vault/2. Fleeting/Inbox.md"),
   meta_folder = "9. Meta",
   attachments_folder = "9. Meta/Attachments",
   templates_folder = "9. Meta/Templates",
