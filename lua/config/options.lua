@@ -69,3 +69,10 @@ vim.g.python3_host_prog = "~/.pyenv/versions/py3nvim/bin/python"
 
 -- Required by opencode.nvim
 vim.o.autoread = true
+
+-- Recognize JSX variants
+vim.filetype.add({
+  extension = {
+    datacorejsx = "jsx",
+  },
+})
