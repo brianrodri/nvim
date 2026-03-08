@@ -1,3 +1,4 @@
+local my_obsidian_depth_links = require("my.obsidian-depth-links")
 local my_obsidian_pinned_note = require("my.obsidian-pinned-note")
 local my_vault = require("my.vault")
 
@@ -6,6 +7,7 @@ local my_vault = require("my.vault")
 return {
   {
     "obsidian-nvim/obsidian.nvim",
+    dir = "~/Repositories/obsidian.nvim",
     enabled = my_vault:is_ok(),
     dependencies = { "nvim-lua/plenary.nvim" },
     ---@module "obsidian"
@@ -18,7 +20,11 @@ return {
       notes_subdir = my_vault.fleeting_notes_folder,
       note_id_func = my_vault.note_id_func,
       new_notes_location = "notes_subdir",
-      frontmatter = { enabled = my_vault.is_frontmatter_enabled, func = my_vault.frontmatter_func },
+      frontmatter = {
+        enabled = my_vault.is_frontmatter_enabled,
+        func = my_vault.frontmatter_func,
+        sort = { "id", "title", "aliases", "tags" },
+      },
 
       -- :help render-markdown-info-obsidian.nvim
       ui = { enable = false },
@@ -33,6 +39,8 @@ return {
       { "<leader>vv", my_obsidian_pinned_note.open_pinned_note, desc = "Open Pinned Note", silent = true },
       { "<leader>va", my_obsidian_pinned_note.append_to_pinned_note, desc = "Append To Pinned Note", silent = true },
       { "<leader>vp", my_obsidian_pinned_note.pick_pinned_note, desc = "Pin/Unpin Note", silent = true },
+      { "<leader>vj", my_obsidian_depth_links.follow_new_child_link, desc = 'New "Down" Note', silent = true },
+      { "<leader>vk", my_obsidian_depth_links.follow_new_parent_link, desc = 'New "Up" Note', silent = true },
       { "<leader>vy", ":Obsidian extract_note<cr>", desc = "Extract to Note", silent = true, mode = { "n", "v" } },
       {
         "<leader>vr",
