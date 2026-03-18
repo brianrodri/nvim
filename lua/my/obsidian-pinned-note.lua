@@ -1,19 +1,19 @@
 ---@diagnostic disable: unused-local, unused-function
 local my_vault = require("my.vault")
 
-local function get_inbox_note()
-  local obsidian_note = require("obsidian.note")
-  return assert(obsidian_note.from_file(my_vault.inbox_note))
+local function get_daily_note()
+  local obsidian_daily = require("obsidian.daily")
+  return obsidian_daily.today()
 end
 
 local function get_pinned_note()
   local obsidian_note = require("obsidian.note")
-  return vim.g.MyPinnedNote and obsidian_note.from_file(vim.g.MyPinnedNote) or get_inbox_note()
+  return vim.g.MyPinnedNote and obsidian_note.from_file(vim.g.MyPinnedNote) or get_daily_note()
 end
 
 local function set_pinned_note(target)
   local old_note = get_pinned_note()
-  local new_note = target or get_inbox_note()
+  local new_note = target or get_daily_note()
   if new_note.path ~= old_note.path then
     vim.notify("󰐃 " .. new_note.path.stem, "info")
     vim.g.MyPinnedNote = new_note.path.filename
