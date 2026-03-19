@@ -33,10 +33,12 @@ function H.goto_new_scoped_link(scope)
 
   vim.schedule(
     function()
-      new_note:open({
-        line = 1 + (new_note.has_frontmatter and new_note.frontmatter_end_line or 1),
-        callback = vim.schedule_wrap(vim.cmd.checktime),
-      })
+      obsidian_note
+        .from_file(new_note.path, { max_lines = math.huge, collect_anchor_links = true, collect_blocks = true })
+        :open({
+          line = 1 + (new_note.has_frontmatter and new_note.frontmatter_end_line or 1),
+          callback = vim.schedule_wrap(vim.cmd.checktime),
+        })
     end
   )
 end
