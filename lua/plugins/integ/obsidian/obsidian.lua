@@ -38,8 +38,6 @@ return {
       { "<leader>vv", my_obsidian_pinned_note.open_pinned_note, desc = "Open Pinned Note", silent = true },
       { "<leader>va", my_obsidian_pinned_note.append_to_pinned_note, desc = "Append To Pinned Note", silent = true },
       { "<leader>vp", my_obsidian_pinned_note.pick_pinned_note, desc = "Pin/Unpin Note", silent = true },
-      { "<leader>vj", my_obsidian_scope.goto_new_narrower_note, desc = "Create Narrower Note", silent = true },
-      { "<leader>vk", my_obsidian_scope.goto_new_broader_note, desc = "Create Broader Note", silent = true },
       { "<leader>vy", ":Obsidian extract_note<cr>", desc = "Extract to Note", silent = true, mode = { "n", "v" } },
       {
         "<leader>vr",
@@ -52,7 +50,25 @@ return {
       -- https://github.com/obsidian-nvim/obsidian.nvim/wiki/Keymaps#remove-default-mapping
       vim.api.nvim_create_autocmd("User", {
         pattern = "ObsidianNoteEnter",
-        callback = function() vim.keymap.del("n", "<CR>", { buffer = true }) end,
+        callback = function(args)
+          vim.keymap.del("n", "<CR>", { buffer = args.buf })
+          require("which-key").add({
+            {
+              "<leader>vj",
+              my_obsidian_scope.goto_new_narrower_note,
+              desc = "Create Narrower Note",
+              silent = true,
+              buffer = args.buf,
+            },
+            {
+              "<leader>vk",
+              my_obsidian_scope.goto_new_broader_note,
+              desc = "Create Broader Note",
+              silent = true,
+              buffer = args.buf,
+            },
+          })
+        end,
       })
     end,
   },
