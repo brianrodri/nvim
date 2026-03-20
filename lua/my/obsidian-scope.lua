@@ -9,16 +9,17 @@ function H.goto_new_scoped_link(scope)
   local current_note = obsidian_api.current_note()
   if not current_note then return end
 
-  local new_id = obsidian_api.input('New "' .. scope .. '" Note')
-  if vim.fn.empty(new_id) == 1 then return end
+  local new_note_id = obsidian_api.input(string.format("New %s Note", scope))
+  if vim.fn.empty(new_note_id) == 1 then return end
 
-  local new_note = obsidian_note.create({ id = new_id, should_write = false }):write({
+  local new_note = obsidian_note.create({ id = new_note_id, should_write = false }):write({
     template = Obsidian.opts.note.template, -- luacheck:ignore 113
     update_content = function(lines)
       return vim.list_extend(lines, {
-        "## " .. (scope == "Narrower" and "Broader" or "Narrower"),
         "",
-        "- " .. current_note:format_link(),
+        string.format("## %s", scope == "Narrower" and "Broader" or "Narrower"),
+        "",
+        string.format("- %s", current_note:format_link()),
       })
     end,
   })
@@ -26,21 +27,17 @@ function H.goto_new_scoped_link(scope)
   H.push_location_onto_tagstack(
     new_note.id,
     current_note:insert_text(
-      string.format("- " .. new_note:format_link()),
+      string.format("- %s", new_note:format_link()),
       scope == "Narrower" and D.NARROWER_OPTS or D.BROADER_SECTION
     )
   )
 
-  vim.schedule(
-    function()
-      obsidian_note
-        .from_file(new_note.path, { max_lines = math.huge, collect_anchor_links = true, collect_blocks = true })
-        :open({
-          line = 1 + (new_note.has_frontmatter and new_note.frontmatter_end_line or 1),
-          callback = vim.schedule_wrap(vim.cmd.checktime),
-        })
-    end
-  )
+  vim.schedule(function()
+    new_note:open({
+      line = 1 + (new_note.has_frontmatter and new_note.frontmatter_end_line or 1),
+      callback = vim.schedule_wrap(function() vim.cmd.edit(tostring(new_note.path)) end),
+    })
+  end)
 end
 
 ---@param tagname string
