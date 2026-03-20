@@ -22,7 +22,6 @@ return {
       new_notes_location = "notes_subdir",
       frontmatter = {
         enabled = my_vault.is_frontmatter_enabled,
-        func = my_vault.frontmatter_func,
         sort = { "id", "title", "aliases", "tags" },
       },
 

@@ -18,11 +18,6 @@ local M = {
   templates_folder = "9. Meta/Templates",
 }
 
----@module "obsidian"
----@param note obsidian.Note
----@return table
-function M.frontmatter_func(note) return note.metadata end
-
 ---@param path string
 ---@return boolean
 function M.is_frontmatter_enabled(path)
