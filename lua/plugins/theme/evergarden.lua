@@ -10,6 +10,7 @@ return {
     opts = {
       theme = { variant = "winter", accent = "green" },
       editor = {
+        transparent_background = true,
         float = {
           color = "mantle",
           solid_border = false,
