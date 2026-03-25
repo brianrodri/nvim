@@ -54,3 +54,16 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "mdx", "md" },
   callback = function() vim.wo.wrap = false end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(event)
+    -- Treesitter highlighting is provided by Neovim, see :h treesitter-highlight.
+    if pcall(vim.treesitter.start, event.buf) then
+      -- Treesitter-based folding is provided by Neovim.
+      vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo[0][0].foldmethod = "expr"
+      -- Treesitter-based indentation is provided by this plugin but considered **experimental**.
+      vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+  end,
+})
