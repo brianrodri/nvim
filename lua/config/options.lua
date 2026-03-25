@@ -67,6 +67,10 @@ vim.o.foldlevelstart = 99
 -- https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
 vim.g.python3_host_prog = "~/.pyenv/versions/py3nvim/bin/python"
 
+-- Disable unused providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Required by opencode.nvim
 vim.o.autoread = true
 
