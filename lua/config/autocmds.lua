@@ -47,25 +47,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.wesl", command = "setfiletype wesl" })
 
--- Set up WESL treesitter parser when nvim-treesitter loads
-vim.api.nvim_create_autocmd("User", {
-  pattern = "LazyLoad",
-  callback = function(event)
-    if event.data == "nvim-treesitter" then
-      require("nvim-treesitter.parsers").get_parser_configs().wesl = {
-        install_info = {
-          url = "https://github.com/wgsl-tooling-wg/tree-sitter-wesl",
-          files = { "src/parser.c", "src/scanner.c" },
-          branch = "main",
-          generate_requires_npm = true,
-        },
-      }
-      vim.filetype.add({ extension = { wesl = "wesl" } })
-      vim.treesitter.language.register("wgsl_bevy", "wesl")
-    end
-  end,
-})
-
 -- Disable word wrap on Markdown files.
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Disable word wrap on Markdown files",
