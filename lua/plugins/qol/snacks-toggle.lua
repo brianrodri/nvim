@@ -12,12 +12,25 @@ vim.api.nvim_create_autocmd("User", {
     snacks_toggle.indent():map("<leader>oi")
     snacks_toggle.line_number():map("<leader>ol")
     snacks_toggle.animate():map("<leader>om")
-    snacks_toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>or")
     snacks_toggle.option("spell", { name = "Spelling" }):map("<leader>os")
     snacks_toggle.treesitter():map("<leader>ot")
     snacks_toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
     snacks_toggle.inlay_hints():map("<leader>oy")
     snacks_toggle.zoom():map("<leader>oz")
+    snacks_toggle
+      .new({
+        name = "Render Markdown (buffer)",
+        get = function() return require("render-markdown.state").get(vim.api.nvim_get_current_buf()).enabled end,
+        set = function(value) require("render-markdown").set_buf(value) end,
+      })
+      :map("<leader>or")
+    snacks_toggle
+      .new({
+        name = "Render Markdown (global)",
+        get = function() return require("render-markdown").get() end,
+        set = function(value) require("render-markdown").set(value) end,
+      })
+      :map("<leader>oR")
   end,
 })
 
