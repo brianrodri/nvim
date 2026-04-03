@@ -9,7 +9,7 @@ return {
     ---@type ProjectOptions
     opts = {
       detection_methods = { "lsp", "pattern" },
-      exclude_dirs = { "~/.local/share/nvim/lazy/*" },
+      exclude_dirs = { "~/.local/share/nvim/lazy/*", "~/Repositories/*/*/**" },
       patterns = { ".git" },
       show_hidden = true,
     },
