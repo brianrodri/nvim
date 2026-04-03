@@ -15,6 +15,7 @@ return {
       heading = { backgrounds = {} },
       callout = my_styles.RENDER_MARKDOWN_CALLOUT_OPTS,
       checkbox = { custom = my_styles.RENDER_MARKDOWN_CHECKBOX_OPTS },
+      pipe_table = { cell = "trimmed", preset = "round" },
       preset = "obsidian",
     },
 
