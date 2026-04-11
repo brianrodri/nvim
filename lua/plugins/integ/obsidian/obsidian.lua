@@ -39,6 +39,7 @@ return {
       { "<leader>va", my_obsidian_pinned_note.append_to_pinned_note, desc = "Append To Pinned Note", silent = true },
       { "<leader>vp", my_obsidian_pinned_note.pick_pinned_note, desc = "Pin/Unpin Note", silent = true },
       { "<leader>vy", ":Obsidian extract_note<cr>", desc = "Extract to Note", silent = true, mode = { "n", "v" } },
+      { "<leader>vt", ":Obsidian today<cr>", desc = "Today's Note", silent = true },
       {
         "<leader>vr",
         function() require("snacks.picker").recent({ filter = { cwd = my_vault.root_dir } }) end,
